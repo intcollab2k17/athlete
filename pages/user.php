@@ -91,7 +91,12 @@
             <input type="text" class="form-control" id="name" name="username" value="<?php echo $row['username'];?>" required>  
           </div>
         </div> 
-        
+        <div class="form-group">
+          <label class="control-label col-lg-3" for="file">Password</label>
+          <div class="col-lg-9">
+            <input type="password" class="form-control" id="name" name="password" value="<?php echo $row['password'];?>" required>  
+          </div>
+        </div> 
         <div class="form-group">
           <label class="control-label col-lg-3" for="file">Designation</label>
             <div class="col-lg-9">

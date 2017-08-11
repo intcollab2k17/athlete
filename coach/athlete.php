@@ -19,8 +19,14 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Line Up
-        <small>Control panel</small>
+        COACH : 
+        <?php
+        $sports=$_REQUEST['sports'];
+        $query=mysqli_query($con,"select * from coach natural join sports natural join member where sports_name='$sports'")or die(mysqli_error($con));
+            $row=mysqli_fetch_array($query);
+              $cid=$row['coach_id'];
+              echo $row['member_last'].", ".$row['member_first'];
+    ?>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -39,7 +45,7 @@
           <div class="box box-success">
     
                 <div class="box-header">
-                  <h3 class="box-title">Line Up for <?php $sports=$_REQUEST['sports'];echo $sports;?>
+                  <h3 class="box-title">Line Up for <?php echo $sports;?>
                   
                   
                   </h3>
@@ -51,7 +57,9 @@
                         <th>Athlete Last Name</th>
                         <th>Athlete First Name</th>
                         <th>Sport</th>
+                        <th>Uniform</th>
                         <th>Award/s</th>
+                        <th>Remarks</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -65,9 +73,18 @@
     
 ?>
                       <tr>
-                        <td><?php echo $row['member_last'];?></td>
+                        <td><?= $row['member_last'];?></td>
                         <td><?php echo $row['member_first'];?></td>
                         <td><?php echo $row['sports_name'];?></td>
+                        <td>
+                          <?php
+                            if ($row['uniform']=="0")
+                                  echo "<a href='tshirt.php?status=yes&aid=$aid&sports=$sports' class='btn btn-info'>Yes</a>";
+                            else
+                                  echo "<a href='tshirt.php?status=No&aid=$aid&sports=$sports' class='btn btn-danger'>No</a>";    
+                          ?>
+                        
+                        </td>
                         <td>
                           <?php
                             $aw=mysqli_query($con,"select * from award where athlete_id='$aid'")or die(mysqli_error($con));
@@ -77,8 +94,10 @@
                           ?>
                         <a href="#award<?php echo $row['athlete_id'];?>" data-target="#award<?php echo $row['athlete_id'];?>" data-toggle="modal" style="color:#fff;" class="small-box-footer"><i class="glyphicon glyphicon-plus text-orange"></i></a>
                         </td>
+
+                        <td><?php echo $row['remarks'];?><a href="#remarks<?php echo $row['athlete_id'];?>" data-target="#remarks<?php echo $row['athlete_id'];?>" data-toggle="modal" style="color:#fff;" class="small-box-footer"> <i class="glyphicon glyphicon-plus text-blue"></i></a></td>
                         <td>
-                          <a href="#forward<?php echo $row['athlete_id'];?>" data-target="#forward<?php echo $row['athlete_id'];?>" data-toggle="modal" style="color:#fff;" class="small-box-footer"><i class="glyphicon glyphicon-forward text-blue"></i></a>
+                          <a href="#forward<?php echo $row['athlete_id'];?>" data-target="#forward<?php echo $row['athlete_id'];?>" data-toggle="modal" style="color:#fff;" class="small-box-footer"> <i class="glyphicon glyphicon-forward text-blue"> </i></a>
                           <a href="profile.php?id=<?php echo $row['member_id'];?>" style="color:#fff;" class="small-box-footer"><i class="glyphicon glyphicon-eye-open text-green"></i></a>
                         </td>
                       </tr>
@@ -153,6 +172,37 @@
       
         </div><!--end of modal-dialog-->
  </div>
+ <!--end of modal--> 
+
+ <div id="remarks<?php echo $row['athlete_id'];?>" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content" style="height:auto">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Add Remarks</h4>
+              </div>
+              <div class="modal-body">
+        <form class="form-horizontal" method="post" action="remarks_add.php" enctype='multipart/form-data'>
+            <input type="hidden" name="id" value="<?php echo $row['athlete_id'];?>">
+            <input type="hidden" name="sports" value="<?php echo $row['sports_name'];?>">
+            <div class="form-group">
+                <label class="control-label col-lg-3" for="date">Remarks</label>
+                <div class="col-md-9">
+                    <textarea type="text" name="remarks" class="form-control" placeholder="Remarks"></textarea>
+                </div><!-- /.input group -->
+            </div><!-- /.form group -->
+            
+              </div><br><br>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-info">Save changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+        </form>
+        </div>
+      
+        </div><!--end of modal-dialog-->
+ </div>
  <!--end of modal-->                 
 <?php }?>           
                     </tbody>
@@ -161,7 +211,9 @@
                         <th>Athlete Last Name</th>
                         <th>Athlete First Name</th>
                         <th>Sport</th>
+                        <th>Uniform</th>
                         <th>Award/s</th>
+                        <th>Remarks</th>
                         <th>Action</th>
                       </tr>           
                     </tfoot>
@@ -210,6 +262,7 @@
                         </select>
                     </div><!-- /.input group -->
                     <input type="hidden" name="sports" value="<?php echo $sports;?>">
+                    <input type="hidden" name="coach" value="<?php echo $cid;?>">
                   </div><!-- /.form group -->
                   <div class="form-group">
                     <label for="date">Event</label>

@@ -46,7 +46,6 @@
                     <thead>
                       <tr>
                         <th>Sport Name</th>
-                        <th>Coach</th>
                         <th>Status</th>
                         <th>Action</th>
                       </tr>
@@ -54,13 +53,12 @@
                     <tbody>
 <?php
     
-    $query=mysqli_query($con,"select * from sports natural join member")or die(mysqli_error($con));
+    $query=mysqli_query($con,"select * from sports")or die(mysqli_error($con));
         while($row=mysqli_fetch_array($query)){
-          $member_id=$row['member_id'];
+         
 ?>
                       <tr>
                         <td><?php echo $row['sports_name'];?></td>
-                        <td><?php echo $row['member_last'].", ".$row['member_first'];?></td>
                         <td><?php echo $row['sports_status'];?></td>
                         <td>
       
@@ -86,42 +84,17 @@
           </div>
         </div> 
         <div class="form-group">
-          <label class="control-label col-lg-3" for="file">Type</label>
-          <div class="col-lg-9">
-            <select class="form-control select2" style="width: 100%;" name="type" required>
-                            <option><?php echo $row['sports_type'];?></option>
-                            <option>Single</option>
-                            <option>Dual</option>
-                            <option>Team</option>
-                        </select>
-          </div>
-        </div> 
-        <div class="form-group">
-            <label class="control-label col-lg-3" for="date">Category</label>
-            <div class="col-md-9">
-                <select class="form-control select2" style="width: 100%;" name="category" required>
-                            <option><?php echo $row['sports_gender'];?></option>
-                            <option>Men</option>
-                            <option>Women</option>
-                            <option>Mix</option>
-                </select>
-            </div><!-- /.input group -->
-        </div><!-- /.form group -->
-        <div class="form-group">
-            <label class="control-label col-lg-3" for="date">Coach</label>
-            <div class="col-md-9">
-                <select class="form-control select2" style="width: 100%;" name="coach" required>
-                    <option value="<?php echo $row['member_id'];?>"><?php echo $row['member_last'].", ".$row['member_first'];?></option>
-                <?php
-                  $query2=mysqli_query($con,"select * from member where member_type='Faculty' and member_id<>'$member_id'")or die(mysqli_error($con));
-                      while($row2=mysqli_fetch_array($query2)){
-                ?>
-                      <option value="<?php echo $row['member_id'];?>"><?php echo $row['member_last'].", ".$row['member_first'];?></option>
-                <?php }?>
-                </select>
-            </div><!-- /.input group -->
-        </div><!-- /.form group -->
-              </div><br><br><br><hr>
+                <label class="control-label col-lg-3" for="date">Status</label>
+                <div class="col-md-9">
+                    <select class="form-control select2" style="width: 100%;" name="status" required>
+                          <option><?php echo $row['sports_status'];?></option>
+                          <option>active</option>
+                          <option>inactive</option>
+                    </select>
+                </div><!-- /.input group -->
+            </div><!-- /.form group -->
+       
+              </div><br><hr>
               <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">Save changes</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -137,9 +110,7 @@
                     <tfoot>
                       <tr>
                         <th>Sport Name</th>
-                        <th>Type</th>
-                        <th>Category</th>
-                        <th>Coach</th>
+                        <th>Status</th>
                         <th>Action</th>
                       </tr>           
                     </tfoot>
@@ -165,39 +136,7 @@
                       <input type="text" class="form-control pull-right" id="date" name="name" placeholder="Name of Sports" required>
                     </div><!-- /.input group -->
                   </div><!-- /.form group -->
-                  <div class="form-group">
-                    <label for="date">Type</label>
-                    <div class="input-group col-md-12">
-                      <select class="form-control select2" style="width: 100%;" name="type" required>
-                            <option>Single</option>
-                            <option>Dual</option>
-                            <option>Team</option>
-                        </select>
-                    </div><!-- /.input group -->
-                  </div><!-- /.form group -->
-                  <div class="form-group">
-                    <label for="date">Category</label>
-                    <div class="input-group col-md-12">
-                      <select class="form-control select2" style="width: 100%;" name="category" required>
-                            <option>Men</option>
-                            <option>Women</option>
-                            <option>Mix</option>
-                        </select>
-                    </div><!-- /.input group -->
-                  </div><!-- /.form group -->
-                  <div class="form-group">
-                    <label for="date">Coach</label>
-                    <div class="input-group col-md-12">
-                        <select class="form-control select2" style="width: 100%;" name="coach" required>
-                        <?php
-                          $query2=mysqli_query($con,"select * from member where member_type='Faculty' order by member_last,member_first")or die(mysqli_error());
-                              while($row2=mysqli_fetch_array($query2)){
-                        ?>
-                              <option value="<?php echo $row2['member_id'];?>"><?php echo $row2['member_last'].", ".$row2['member_first'];?></option>
-                        <?php }?>
-                        </select>
-                    </div><!-- /.input group -->
-                </div><!-- /.form group -->
+                  
                
                   
                   <div class="form-group">
