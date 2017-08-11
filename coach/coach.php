@@ -53,8 +53,8 @@
                     </thead>
                     <tbody>
 <?php
-    
-    $query=mysqli_query($con,"select * from coach natural join member natural join sports natural join event where settings_id='$settings' order by sports_name")or die(mysqli_error($con));
+    $campus_id=$_SESSION['campus'];
+    $query=mysqli_query($con,"select * from coach natural join member natural join sports natural join event where event_status='active' and campus_id='$campus_id' order by sports_name")or die(mysqli_error($con));
         while($row=mysqli_fetch_array($query)){
     
 ?>
@@ -90,7 +90,7 @@
                     <div class="input-group col-md-12">
                         <select class="form-control select2" style="width: 100%;" name="coach" required>
                         <?php
-                          $query2=mysqli_query($con,"select * from member where member_type<>'Student' and member_status='1' order by member_last,member_first")or die(mysqli_error());
+                          $query2=mysqli_query($con,"select * from member where member_type<>'Student' and member_status='1' and campus_id='$campus_id' order by member_last,member_first")or die(mysqli_error());
                               while($row2=mysqli_fetch_array($query2)){
                         ?>
                               <option value="<?php echo $row2['member_id'];?>"><?php echo $row2['member_last'].", ".$row2['member_first'];?></option>

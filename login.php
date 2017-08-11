@@ -7,16 +7,15 @@ if(isset($_POST['login']))
 
 $user_unsafe=$_POST['username'];
 $pass_unsafe=$_POST['password'];
+$designation=$_POST['designation'];
 
 $user = mysqli_real_escape_string($con,$user_unsafe);
 $pass = mysqli_real_escape_string($con,$pass_unsafe);
 
-$query=mysqli_query($con,"select * from user where username='$user' and password='$pass'")or die(mysqli_error($con));
+$query=mysqli_query($con,"select * from user where username='$user' and password='$pass' and designation='$designation'")or die(mysqli_error($con));
 	$row=mysqli_fetch_array($query);
            $id=$row['user_id'];
            $name=$row['name'];
-         //  $pic=$row['user_pic'];
-          // $type=$row['user_type'];
            $counter=mysqli_num_rows($query);
            
            $id=$row['user_id'];
@@ -29,8 +28,14 @@ $query=mysqli_query($con,"select * from user where username='$user' and password
 	  elseif ($counter > 0)
 	  {
 	  $_SESSION['id']=$id;	
-	 
-	    echo "<script type='text/javascript'>document.location='pages/home.php'</script>";
+	  $_SESSION['name']=$name;	
+	 	if ($designation=='Sports Director')
+	    	echo "<script type='text/javascript'>document.location='pages/home.php'</script>";
+		else
+		{
+			$_SESSION['campus']	=$row['campus_id'];
+			echo "<script type='text/javascript'>document.location='coach/home.php'</script>";
+		}
 	  }
 }	 
 ?>

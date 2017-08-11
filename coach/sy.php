@@ -19,12 +19,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Coaches
+        Members
         <small>Control panel</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Coaches</li>
+        <li class="active">Members</li>
       </ol>
     </section>
 
@@ -39,38 +39,70 @@
           <div class="box box-success">
     
                 <div class="box-header">
-                  <h3 class="box-title">List of Coaches</h3>
+                  <h3 class="box-title">School Year List</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <table id="" class="table table-bordered table-striped">
+                  <table id="example1" class="table table-bordered table-striped">
                     <thead>
                       <tr>
-                        <th>Coach Name</th>
-                        <th>Sports Name</th>
-                        <th>Event</th>
-                        <th>Line Up</th>
+                        <th>School Year</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
 <?php
-    
-    $query=mysqli_query($con,"select * from coach natural join member natural join sports natural join event where settings_id='$settings' order by sports_name")or die(mysqli_error($con));
+    include('../dist/includes/dbcon.php');
+
+    $query=mysqli_query($con,"select * from sy order by sy desc")or die(mysqli_error($con));
         while($row=mysqli_fetch_array($query)){
     
 ?>
                       <tr>
-                        <td><?php echo $row['member_last'].", ".$row['member_first'];?></td>
-                        <td><?php echo $row['sports_name'];?></td>
-                        <td><?php echo $row['event_name'];?></td>
-                        <td><a href="lineup.php?id=<?php echo $row['coach_id'];?>">View</a></td>
+                        <td><?php echo $row['sy'];?></td>
+                        <td>
+                          <a href="#update<?php echo $row['sy_id'];?>" data-target="#update<?php echo $row['sy_id'];?>" data-toggle="modal" style="color:#fff;" class="small-box-footer"><i class="glyphicon glyphicon-edit text-blue"></i></a>
+                        </td>
                       </tr>
-
+<div id="update<?php echo $row['sy_id'];?>" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content" style="height:auto">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Update School Year Details</h4>
+              </div>
+              <div class="modal-body">
+        <form class="form-horizontal" method="post" action="sy_update.php" enctype='multipart/form-data'>
+                
+        <div class="form-group">
+          <label class="control-label col-lg-3" for="name">School Year</label>
+          <div class="col-lg-9"><input type="hidden" class="form-control" id="id" name="id" value="<?php echo $row['sy_id'];?>" required>  
+            <input type="text" class="form-control" id="name" name="sy" value="<?php echo $row['sy'];?>" required>  
+          </div>
+        </div> 
+        
+        
+              </div><br><br>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-info">Save changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+        </form>
+            </div>
+      
+        </div><!--end of modal-dialog-->
+ </div>
+ <!--end of modal-->                    
 <?php }?>           
                     </tbody>
+                    <tfoot>
+                      <tr>
+                        <th>School Year</th>
+                        <th>Action</th>
+                      </tr>           
+                    </tfoot>
                   </table>
                 </div><!-- /.box-body -->
-
-        </div><!-- /.box -->
           <!-- /.nav-tabs-custom -->
         </section>
         <!-- /.Left col -->
@@ -80,44 +112,24 @@
           <!-- solid sales graph -->
           <div class="box box-success">
                 <div class="box-header">
-                  <h3 class="box-title">Coach</h3>
+                  <h3 class="box-title">Add New School Year</h3>
                 </div>
                 <div class="box-body">
                   <!-- Date range -->
-                  <form method="post" action="coach_add.php" enctype="multipart/form-data">
+                  <form method="post" action="sy_add.php" enctype="multipart/form-data">
+  
                   <div class="form-group">
-                    <label for="date">Coach Name</label>
+                    <label for="date">School Year</label>
                     <div class="input-group col-md-12">
-                        <select class="form-control select2" style="width: 100%;" name="coach" required>
-                        <?php
-                          $query2=mysqli_query($con,"select * from member where member_type<>'Student' and member_status='1' order by member_last,member_first")or die(mysqli_error());
-                              while($row2=mysqli_fetch_array($query2)){
-                        ?>
-                              <option value="<?php echo $row2['member_id'];?>"><?php echo $row2['member_last'].", ".$row2['member_first'];?></option>
-                        <?php }?>
-                        </select>
-                    </div><!-- /.input group -->
-                </div><!-- /.form group -->
-                   <div class="form-group">
-                    <label for="date">Sport</label>
-                    <div class="input-group col-md-12">
-                      <select class="form-control select2" style="width: 100%;" name="sport" required>
-                        <?php
-                          $query2=mysqli_query($con,"select * from sports where sports_status='active'")or die(mysqli_error());
-                              while($row2=mysqli_fetch_array($query2)){
-                        ?>
-                              <option value="<?php echo $row2['sports_id'];?>"><?php echo $row2['sports_name'];?></option>
-                        <?php }?>
-                        </select>
+                      <input type="text" class="form-control pull-right" id="date" name="sy" placeholder="School Year (2017-2018)" required>
                     </div><!-- /.input group -->
                   </div><!-- /.form group -->
-                  
                   <div class="form-group">
                     <div class="input-group">
                       <button class="btn btn-info" id="daterange-btn" name="">
                         Save
                       </button>
-                       <button class="btn" id="daterange-btn" type="reset">
+            <button class="btn" id="daterange-btn">
                         Clear
                       </button>
                     </div>
@@ -125,7 +137,6 @@
         </form> 
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
-
 
         </section>
         <!-- right col -->

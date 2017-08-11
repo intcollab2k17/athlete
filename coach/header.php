@@ -26,22 +26,15 @@
           <!-- Tasks: style can be found in dropdown.less -->
 <?php 
                       
-                      $query=mysqli_query($con,"select COUNT(*) as count from borrow where status='0'")or die(mysqli_error());
+                      $query=mysqli_query($con,"select * from event where event_status='active'")or die(mysqli_error());
                           $row=mysqli_fetch_array($query);
                           
                        ?>           
           <li class="dropdown tasks-menu">
-            <a href="unreturned.php">
-              <i class="glyphicon glyphicon-refresh"></i>
-              <span class="label label-danger"><?php echo $row['count'];?></span>
-              Unreturned Equipments
-            </a>
-          </li>
-          <li class="dropdown tasks-menu">
-            <a href="settings.php">
-              <i class="fa fa-cog"></i>
+            <a href="#">
+              <i class="glyphicon glyphicon-calendar"></i>
               <span class="label label-danger"></span>
-              Settings
+              <?php echo $row['event_name'];?>
             </a>
           </li>
           <!-- User Account: style can be found in dropdown.less -->

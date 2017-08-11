@@ -68,7 +68,7 @@
           <ul class="treeview-menu">
 <?php
     
-    $query=mysqli_query($con,"select * from settings order by sy,sem desc")or die(mysqli_error($con));
+    $query=mysqli_query($con,"select * from settings where status<>'active' order by sy,sem desc")or die(mysqli_error($con));
         while($row=mysqli_fetch_array($query)){
           $sid=$row['settings_id'];
 ?>          
