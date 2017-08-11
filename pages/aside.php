@@ -38,8 +38,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="athlete.php"><i class="fa fa-circle-o"></i> Athlete </a></li>
-            <li><a href="member_select.php"><i class="fa fa-circle-o"></i> Borrow</a></li>
-            <li><a href="return.php"><i class="fa fa-circle-o"></i> Return</a></li>
+            <li><a href="borrow.php"><i class="fa fa-circle-o"></i> Borrow</a></li>
             <li><a href="documents.php"><i class="fa fa-circle-o"></i> Documents</a></li>
           </ul>
         </li>
@@ -52,11 +51,29 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i> Archive</a></li>
             <li><a href="coach.php"><i class="fa fa-circle-o"></i> Coaches</a></li>
             <li><a href="inventory.php"><i class="fa fa-circle-o"></i> Inventory</a></li>
             <li><a href="return.php"><i class="fa fa-circle-o"></i> Return</a></li>
             <li><a href="statistics.php"><i class="fa fa-circle-o"></i> Statistics</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-laptop"></i>
+            <span>Archive</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+<?php
+    
+    $query=mysqli_query($con,"select * from settings order by sy,sem desc")or die(mysqli_error($con));
+        while($row=mysqli_fetch_array($query)){
+          $sid=$row['settings_id'];
+?>          
+            <li><a href="archive.php"><i class="fa fa-circle-o"></i> <?php echo $row['sem']." ".$row['sy'];?></a></li>
+<?php }?>          
           </ul>
         </li>
       </ul>

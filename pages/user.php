@@ -47,6 +47,7 @@
                       <tr>
                         <th>Full Name</th>
                         <th>Username</th>
+                        <th>Designation</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -60,66 +61,44 @@
                       <tr>
                         <td><?php echo $row['name'];?></td>
                         <td><?php echo $row['username'];?></td>
+                        <td><?php echo $row['designation'];?></td>
                         <td>
       
-        <a href="#update<?php echo $row['member_id'];?>" data-target="#update<?php echo $row['member_id'];?>" data-toggle="modal" style="color:#fff;" class="small-box-footer"><i class="glyphicon glyphicon-edit text-blue"></i></a>
+        <a href="#update<?php echo $row['user_id'];?>" data-target="#update<?php echo $row['user_id'];?>" data-toggle="modal" style="color:#fff;" class="small-box-footer"><i class="glyphicon glyphicon-edit text-blue"></i></a>
         
             </td>
                       </tr>
-<div id="update<?php echo $row['member_id'];?>" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+<div id="update<?php echo $row['user_id'];?>" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
   <div class="modal-dialog">
     <div class="modal-content" style="height:auto">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Update Member Details</h4>
+                <h4 class="modal-title">Update User Details</h4>
               </div>
               <div class="modal-body">
-        <form class="form-horizontal" method="post" action="member_update.php" enctype='multipart/form-data'>
+        <form class="form-horizontal" method="post" action="user_update.php" enctype='multipart/form-data'>
                 
         <div class="form-group">
-          <label class="control-label col-lg-3" for="name">Last Name</label>
-          <div class="col-lg-9"><input type="hidden" class="form-control" id="id" name="id" value="<?php echo $row['member_id'];?>" required>  
-            <input type="text" class="form-control" id="name" name="last" value="<?php echo $row['member_last'];?>" required>  
+          <label class="control-label col-lg-3" for="name">Full Name</label>
+          <div class="col-lg-9"><input type="hidden" class="form-control" id="id" name="id" value="<?php echo $row['user_id'];?>" required>  
+            <input type="text" class="form-control" id="name" name="name" value="<?php echo $row['name'];?>" required>  
           </div>
         </div> 
         <div class="form-group">
-          <label class="control-label col-lg-3" for="file">First Name</label>
+          <label class="control-label col-lg-3" for="file">Username</label>
           <div class="col-lg-9">
-            <input type="text" class="form-control" id="name" name="first" value="<?php echo $row['member_first'];?>" required>  
+            <input type="text" class="form-control" id="name" name="username" value="<?php echo $row['username'];?>" required>  
           </div>
         </div> 
+        
         <div class="form-group">
-            <label class="control-label col-lg-3" for="date">Course</label>
-            <div class="col-md-9">
-                <select class="form-control select2" style="width: 100%;" name="course" required>
-                <?php
-                  $query2=mysqli_query($con,"select * from course order by course")or die(mysqli_error($con));
-                      while($row2=mysqli_fetch_array($query2)){
-                ?>
-                      <option value="<?php echo $row['course'];?>"><?php echo $row['course_title'];?></option>
-                      <option value="<?php echo $row2['course'];?>"><?php echo $row2['course_title'];?></option>
-                <?php }?>
-                </select>
-            </div><!-- /.input group -->
-        </div><!-- /.form group -->
-        <div class="form-group">
-            <label class="control-label col-lg-3" for="date">Gender</label>
-            <div class="col-md-9">
-                <select class="form-control select2" style="width: 100%;" name="gender" required>
-                      <option>Male</option>
-                      <option>Female</option>
-                </select>
-            </div><!-- /.input group -->
-        </div><!-- /.form group -->
-        <div class="form-group">
-          <label class="control-label col-lg-3" for="file">Member Type</label>
+          <label class="control-label col-lg-3" for="file">Designation</label>
             <div class="col-lg-9">
-              <select class="form-control select2" style="width: 100%;" name="type" required>
-                        <option><?php echo $row['member_type'];?></option>
-                        <option>Student</option>
-                        <option>Faculty</option>
-                        <option>Staff</option>
+              <select class="form-control select2" style="width: 100%;" name="designation" required>
+                        <option><?php echo $row['designation'];?></option>
+                        <option>Sports Director</option>
+                        <option>Sports Coordinator</option>
                     </select>
                     </div><!-- /.input group -->
                   </div><!-- /.form group -->
@@ -178,7 +157,15 @@
                       <input type="password" class="form-control pull-right" id="date" name="password" placeholder="Password" required>
                     </div><!-- /.input group -->
                   </div><!-- /.form group -->
-                  
+                  <div class="form-group">
+                    <label for="date">Designation</label>
+                    <div class="input-group col-md-12">
+                    <select class="form-control select2" style="width: 100%;" name="designation" required>
+                          <option>Sports Director</option>
+                          <option>Sports Coordinator</option>
+                    </select>
+                    </div><!-- /.input group -->
+                </div><!-- /.form group -->
                   <div class="form-group">
                     <div class="input-group">
                       <button class="btn btn-info btn-lg" id="daterange-btn" name="">

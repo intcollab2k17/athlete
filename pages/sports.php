@@ -46,9 +46,8 @@
                     <thead>
                       <tr>
                         <th>Sport Name</th>
-                        <th>Type</th>
-                        <th>Category</th>
                         <th>Coach</th>
+                        <th>Status</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -61,9 +60,8 @@
 ?>
                       <tr>
                         <td><?php echo $row['sports_name'];?></td>
-                        <td><?php echo $row['sports_type'];?></td>
-                        <td><?php echo $row['sports_gender'];?></td>
                         <td><?php echo $row['member_last'].", ".$row['member_first'];?></td>
+                        <td><?php echo $row['sports_status'];?></td>
                         <td>
       
         <a href="#update<?php echo $row['member_id'];?>" data-target="#update<?php echo $row['sports_id'];?>" data-toggle="modal" style="color:#fff;" class="small-box-footer"><i class="glyphicon glyphicon-edit text-blue"></i></a>
