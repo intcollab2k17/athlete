@@ -24,8 +24,9 @@
     $query=mysqli_query($con,"select * from sports where sports_status='active' order by sports_name")or die(mysqli_error($con));
         while($row=mysqli_fetch_array($query)){
           $sid=$row['sports_id'];
+          $sports=$row['sports_name'];
 ?>                    
-            <li><a href="athlete.php"><i class="fa fa-circle-o"></i> <?php echo $row['sports_name'];?> </a></li>
+            <li><a href="athlete.php?sports=<?php echo $sports;?>"><i class="fa fa-circle-o"></i> <?php echo $row['sports_name'];?> </a></li>
 <?php }?>
           </ul>
         </li>

@@ -19,12 +19,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Members
+        Line Up
         <small>Control panel</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Members</li>
+        <li class="active">Line Up</li>
       </ol>
     </section>
 
@@ -39,7 +39,7 @@
           <div class="box box-success">
     
                 <div class="box-header">
-                  <h3 class="box-title">Athlete List
+                  <h3 class="box-title">Line Up for <?php $sports=$_REQUEST['sports'];echo $sports;?>
                   
                   
                   </h3>
@@ -59,8 +59,7 @@
                     <tbody>
                     <form method="post" action="forward.php">
 <?php
-    
-    $query=mysqli_query($con,"select *,athlete.member_id as member from athlete natural join member left join sports on athlete.sports_id=sports.sports_id")or die(mysqli_error($con));
+    $query=mysqli_query($con,"select * from athlete natural join member natural join sports where sports_name='$sports'")or die(mysqli_error($con));
         while($row=mysqli_fetch_array($query)){
           $aid=$row['athlete_id'];
     
@@ -79,93 +78,19 @@
                         <a href="#award<?php echo $row['athlete_id'];?>" data-target="#award<?php echo $row['athlete_id'];?>" data-toggle="modal" style="color:#fff;" class="small-box-footer"><i class="glyphicon glyphicon-plus text-orange"></i></a>
                         </td>
                         <td>
-                          <a href="#update<?php echo $row['athlete_id'];?>" data-target="#update<?php echo $row['athlete_id'];?>" data-toggle="modal" style="color:#fff;" class="small-box-footer"><i class="glyphicon glyphicon-edit text-orange"></i></a>
                           <a href="#forward<?php echo $row['athlete_id'];?>" data-target="#forward<?php echo $row['athlete_id'];?>" data-toggle="modal" style="color:#fff;" class="small-box-footer"><i class="glyphicon glyphicon-forward text-blue"></i></a>
-                          <a href="profile.php?id=<?php echo $row['member'];?>" style="color:#fff;" class="small-box-footer"><i class="glyphicon glyphicon-eye-open text-green"></i></a>
+                          <a href="profile.php?id=<?php echo $row['member_id'];?>" style="color:#fff;" class="small-box-footer"><i class="glyphicon glyphicon-eye-open text-green"></i></a>
                         </td>
                       </tr>
                       
-<div id="update<?php echo $row['athlete_id'];?>" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-  <div class="modal-dialog">
-    <div class="modal-content" style="height:auto">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Update Athlete Details</h4>
-              </div>
-              <div class="modal-body">
-        <form class="form-horizontal" method="post" action="athlete_update.php" enctype='multipart/form-data'>
-            <div class="form-group">
-                <label class="control-label col-lg-3" for="date">Athlete Name</label>
-                <div class="col-md-9">
-                    <input type="hidden" name="id" value="<?php echo $row['athlete_id'];?>">
-                    <select class="form-control select2" style="width: 100%;" name="name" required>
-                    <?php
-                      $query2=mysqli_query($con,"select * from member where member_type='Student' order by member_last,member_first")or die(mysqli_error($con));
-                          while($row2=mysqli_fetch_array($query2)){
-                    ?>
-                          <option value="<?php echo $row2['member_id'];?>"><?php echo $row2['member_last'].", ".$row2['member_first'];?></option>
-                    <?php }?>
-                    </select>
-                </div><!-- /.input group -->
-            </div><!-- /.form group -->
-            <div class="form-group">
-                <label class="control-label col-lg-3" for="date">Sport</label>
-                <div class="col-md-9">
-                    <select class="form-control select2" style="width: 100%;" name="sport" required>
-                    <?php
-                      $query2=mysqli_query($con,"select * from sports order by sports_name")or die(mysqli_error($con));
-                          while($row2=mysqli_fetch_array($query2)){
-                    ?>
-                          <option value="<?php echo $row2['sports_id'];?>"><?php echo $row2['sports_name'];?></option>
-                    <?php }?>
-                    </select>
-                </div><!-- /.input group -->
-            </div><!-- /.form group -->
-            <div class="form-group">
-            <label class="control-label col-lg-3" for="date">Semester</label>
-            <div class="col-md-9">
-                <select class="form-control select2" style="width: 100%;" name="sem" required>
-                      <option>1st</option>
-                      <option>2nd</option>
-                </select>
-            </div><!-- /.input group -->
-        </div><!-- /.form group -->
 
-        
-        <div class="form-group">
-            <label class="control-label col-lg-3" for="date">School Year</label>
-            <div class="col-md-9">
-                <select class="form-control select2" style="width: 100%;" name="sy" required>
-                <?php
-                  $query2=mysqli_query($con,"select * from sy order by sy")or die(mysqli_error($con));
-                      while($row2=mysqli_fetch_array($query2)){
-                ?>
-                      <option><?php echo $row['sy'];?></option>
-                <?php }?>
-                </select>
-            </div><!-- /.input group -->
-        </div><!-- /.form group -->
-        
-        
-              </div><br><br><br><hr>
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-info">Save changes</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
-        </form>
-        </div>
-      
-        </div><!--end of modal-dialog-->
- </div>
- <!--end of modal--> 
  <div id="forward<?php echo $row['athlete_id'];?>" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
   <div class="modal-dialog">
     <div class="modal-content" style="height:auto">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Update Athlete Details</h4>
+                <h4 class="modal-title">Forward Athlete To Next Sem</h4>
               </div>
               <div class="modal-body">
         <form class="form-horizontal" method="post" action="forward.php" enctype='multipart/form-data'>
@@ -173,29 +98,19 @@
              
        
             <div class="form-group">
-            <label class="control-label col-lg-3" for="date">Semester</label>
+            <label class="control-label col-lg-3" for="date">Sem & SY</label>
             <div class="col-md-9">
-                <select class="form-control select2" style="width: 100%;" name="sem" required>
-                      <option>1st</option>
-                      <option>2nd</option>
-                </select>
-            </div><!-- /.input group -->
-        </div><!-- /.form group -->
-
-        
-        <div class="form-group">
-            <label class="control-label col-lg-3" for="date">School Year</label>
-            <div class="col-md-9">
-                <select class="form-control select2" style="width: 100%;" name="sy" required>
+                <select class="form-control select2" style="width: 100%;" name="settings" required>
                 <?php
-                  $query2=mysqli_query($con,"select * from sy order by sy")or die(mysqli_error($con));
+                  $query2=mysqli_query($con,"select * from settings order by sy,sem desc")or die(mysqli_error($con));
                       while($row2=mysqli_fetch_array($query2)){
                 ?>
-                      <option><?php echo $row['sy'];?></option>
+                      <option><?php echo $row2['sem']." ".$row2['sy'];?></option>
                 <?php }?>
                 </select>
             </div><!-- /.input group -->
         </div><!-- /.form group -->
+
         
         
               </div><br><br><br><hr>
@@ -284,22 +199,24 @@
                   <div class="form-group">
                     <label for="date">Sport</label>
                     <div class="input-group col-md-12">
-                      <select class="form-control select2" style="width: 100%;" name="sport" required>
+                      <select class="form-control select2" style="width: 100%;" name="sport" readonly>
                         <?php
-                          $query2=mysqli_query($con,"select * from sports order by sports_name")or die(mysqli_error($con));
+                          $sports=$_REQUEST['sports'];
+                          $query2=mysqli_query($con,"select * from sports where sports_name='$sports' order by sports_name")or die(mysqli_error($con));
                               while($row2=mysqli_fetch_array($query2)){
                         ?>
                               <option value="<?php echo $row2['sports_id'];?>"><?php echo $row2['sports_name'];?></option>
                         <?php }?>
                         </select>
                     </div><!-- /.input group -->
+                    <input type="hidden" name="sports" value="<?php echo $sports;?>">
                   </div><!-- /.form group -->
                   <div class="form-group">
                     <label for="date">Event</label>
                     <div class="input-group col-md-12">
-                      <select class="form-control select2" style="width: 100%;" name="event" required>
+                      <select class="form-control select2" style="width: 100%;" name="event" readonly>
                         <?php
-                          $query2=mysqli_query($con,"select * from event order by event_name")or die(mysqli_error($con));
+                          $query2=mysqli_query($con,"select * from event where event_id='$event_id' order by event_name")or die(mysqli_error($con));
                               while($row2=mysqli_fetch_array($query2)){
                         ?>
                               <option value="<?php echo $row2['event_id'];?>"><?php echo $row2['event_name'];?></option>

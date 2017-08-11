@@ -28,7 +28,7 @@
                       
                       $query=mysqli_query($con,"select * from event where event_status='active'")or die(mysqli_error());
                           $row=mysqli_fetch_array($query);
-                          
+                            $event_id=$row['event_id'];
                        ?>           
           <li class="dropdown tasks-menu">
             <a href="#">
@@ -51,7 +51,7 @@
                   <a href="logout.php" class="btn btn-danger btn-flat">Sign out</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="account_settings.php" class="btn btn-default btn-flat">Account Settings</a>
                 </div>
               </li>
             </ul>
