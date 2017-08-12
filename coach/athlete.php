@@ -22,7 +22,8 @@
         COACH : 
         <?php
         $sports=$_REQUEST['sports'];
-        $query=mysqli_query($con,"select * from coach natural join sports natural join member where sports_name='$sports'")or die(mysqli_error($con));
+        $campus=$_SESSION['campus'];
+        $query=mysqli_query($con,"select * from coach natural join sports natural join member where sports_name='$sports' and campus_id='$campus'")or die(mysqli_error($con));
             $row=mysqli_fetch_array($query);
               $cid=$row['coach_id'];
               echo $row['member_last'].", ".$row['member_first'];
@@ -67,7 +68,7 @@
                     <tbody>
                     <form method="post" action="forward.php">
 <?php
-    $query=mysqli_query($con,"select * from athlete natural join member natural join sports where sports_name='$sports'")or die(mysqli_error($con));
+    $query=mysqli_query($con,"select * from athlete natural join member natural join sports where sports_name='$sports' and campus_id='$campus'")or die(mysqli_error($con));
         while($row=mysqli_fetch_array($query)){
           $aid=$row['athlete_id'];
     
@@ -99,8 +100,36 @@
                         <td>
                           <a href="#forward<?php echo $row['athlete_id'];?>" data-target="#forward<?php echo $row['athlete_id'];?>" data-toggle="modal" style="color:#fff;" class="small-box-footer"> <i class="glyphicon glyphicon-forward text-blue"> </i></a>
                           <a href="profile.php?id=<?php echo $row['member_id'];?>" style="color:#fff;" class="small-box-footer"><i class="glyphicon glyphicon-eye-open text-green"></i></a>
+                          <a href="#remove<?php echo $row['athlete_id'];?>" data-target="#remove<?php echo $row['athlete_id'];?>" data-toggle="modal" style="color:#fff;" class="small-box-footer"><i class="glyphicon glyphicon-trash text-red"></i></a>
                         </td>
                       </tr>
+<div id="remove<?php echo $row['athlete_id'];?>" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content" style="height:auto">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Remove Athlete From Line Up</h4>
+              </div>
+              <div class="modal-body">
+        <form class="form-horizontal" method="post" action="athlete_delete.php" enctype='multipart/form-data'>
+            <input type="hidden" name="id" value="<?php echo $row['athlete_id'];?>">
+            <input type="hidden" name="cid" value="<?php echo $cid;?>">
+            <input type="hidden" name="sports" value="<?php echo $sports;?>">
+             Are you sure you want to remove <?php echo $row['member_last'].", ".$row['member_first'];?> from the line up?
+        
+        
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-danger">Remove</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+        </form>
+        </div>
+      
+        </div><!--end of modal-dialog-->
+ </div>
+ <!--end of modal-->    
                       
 
  <div id="forward<?php echo $row['athlete_id'];?>" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
@@ -240,7 +269,8 @@
                     <div class="input-group col-md-12">
                       <select class="form-control select2" style="width: 100%;" name="name" required>
                         <?php
-                          $query2=mysqli_query($con,"select * from member where member_type='Student' order by member_last,member_first")or die(mysqli_error($con));
+                          $campus=$_SESSION['campus'];
+                          $query2=mysqli_query($con,"select * from member where member_type='Student' and campus_id='$campus' order by member_last,member_first")or die(mysqli_error($con));
                               while($row2=mysqli_fetch_array($query2)){
                         ?>
                               <option value="<?php echo $row2['member_id'];?>"><?php echo $row2['member_last'].", ".$row2['member_first'];?></option>
@@ -254,6 +284,7 @@
                       <select class="form-control select2" style="width: 100%;" name="sport" readonly>
                         <?php
                           $sports=$_REQUEST['sports'];
+
                           $query2=mysqli_query($con,"select * from sports where sports_name='$sports' order by sports_name")or die(mysqli_error($con));
                               while($row2=mysqli_fetch_array($query2)){
                         ?>

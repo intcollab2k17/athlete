@@ -10,26 +10,7 @@
           </a>
         </li>
         <li><a href="coach.php"><i class="fa fa-circle-o"></i> Coaches</a></li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-pie-chart"></i>
-            <span>Line Up</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-<?php
-    
-    $query=mysqli_query($con,"select * from sports where sports_status='active' order by sports_name")or die(mysqli_error($con));
-        while($row=mysqli_fetch_array($query)){
-          $sid=$row['sports_id'];
-          $sports=$row['sports_name'];
-?>                    
-            <li><a href="athlete.php?sports=<?php echo $sports;?>"><i class="fa fa-circle-o"></i> <?php echo $row['sports_name'];?> </a></li>
-<?php }?>
-          </ul>
-        </li>
+        
         
         <li class="treeview">
           <a href="#">

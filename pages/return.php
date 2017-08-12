@@ -55,8 +55,8 @@
                     </thead>
                     <tbody>
 <?php
-    $bid=$_REQUEST['borrower'];
-    $query=mysqli_query($con,"select * from borrow natural join equipment where member_id='$bid' order by date_borrowed")or die(mysqli_error($con));
+    
+    $query=mysqli_query($con,"select * from borrow natural join equipment order by date_borrowed")or die(mysqli_error($con));
         while($row=mysqli_fetch_array($query)){
             $id=$row['borrow_id'];
     

@@ -53,6 +53,7 @@
                         <th>Address</th>
                         <th>Member Type</th>
                         <th>Campus</th>
+                        <th>Status</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -72,6 +73,7 @@
                         <td><?php echo $row['address'];?></td>
                         <td><?php echo $row['member_type'];?></td>
                         <td><?php echo $row['campus'];?></td>
+                        <td><?php if ($row['member_status']=='1')echo "Active"; else echo "Inactive";?></td>
                         <td>
       
         <a href="#update<?php echo $row['member_id'];?>" data-target="#update<?php echo $row['member_id'];?>" data-toggle="modal" style="color:#fff;" class="small-box-footer"><i class="glyphicon glyphicon-edit text-blue"></i></a>
@@ -173,6 +175,7 @@
                         <th>Address</th>
                         <th>Member Type</th>
                         <th>Campus</th>
+                        <th>Status</th>
                         <th>Action</th> 
                       </tr>           
                     </tfoot>

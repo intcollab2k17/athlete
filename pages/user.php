@@ -48,13 +48,14 @@
                         <th>Full Name</th>
                         <th>Username</th>
                         <th>Designation</th>
+                        <th>Campus</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
 <?php
     
-    $query=mysqli_query($con,"select * from user")or die(mysqli_error($con));
+    $query=mysqli_query($con,"select * from user natural join campus")or die(mysqli_error($con));
         while($row=mysqli_fetch_array($query)){
     
 ?>
@@ -62,6 +63,7 @@
                         <td><?php echo $row['name'];?></td>
                         <td><?php echo $row['username'];?></td>
                         <td><?php echo $row['designation'];?></td>
+                        <td><?php echo $row['campus'];?></td>
                         <td>
       
         <a href="#update<?php echo $row['user_id'];?>" data-target="#update<?php echo $row['user_id'];?>" data-toggle="modal" style="color:#fff;" class="small-box-footer"><i class="glyphicon glyphicon-edit text-blue"></i></a>
@@ -107,7 +109,20 @@
                     </select>
                     </div><!-- /.input group -->
                   </div><!-- /.form group -->
-        
+              <div class="form-group">
+               <label class="control-label col-lg-3" for="file">Campus</label>
+                <div class="col-lg-9">
+                <select class="form-control select2" name="campus" tabindex="1" required>
+                    <option value="<?php echo $row['campus_id'];?>"><?php echo $row['campus'];?></option>
+                <?php
+                   $query2=mysqli_query($con,"select * from campus order by campus")or die(mysqli_error($con));
+                      while($row=mysqli_fetch_array($query2)){
+                  
+                ?>
+                    <option value="<?php echo $row['campus_id'];?>"><?php echo $row['campus'];?></option>
+                  <?php }?>
+                </select>
+              </div><!-- /.form group -->
               </div><br><br><br><hr>
               <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">Save changes</button>
@@ -125,6 +140,8 @@
                       <tr>
                         <th>Full Name</th>
                         <th>Username</th>
+                        <th>Designation</th>
+                        <th>Campus</th>
                         <th>Action</th>
                       </tr>           
                     </tfoot>
@@ -171,6 +188,19 @@
                     </select>
                     </div><!-- /.input group -->
                 </div><!-- /.form group -->
+                <div class="form-group">
+              <label for="date">Campus</label>
+               
+                <select class="form-control select2" name="campus" required>
+                <?php
+                   $query2=mysqli_query($con,"select * from campus order by campus")or die(mysqli_error($con));
+                      while($row=mysqli_fetch_array($query2)){
+                  
+                ?>
+                    <option value="<?php echo $row['campus_id'];?>"><?php echo $row['campus'];?></option>
+                  <?php }?>
+                </select>
+              </div><!-- /.form group -->
                   <div class="form-group">
                     <div class="input-group">
                       <button class="btn btn-info btn-lg" id="daterange-btn" name="">

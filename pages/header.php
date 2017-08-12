@@ -58,7 +58,7 @@
                   <a href="logout.php" class="btn btn-danger btn-flat">Sign out</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="account_settings.php" class="btn btn-default btn-flat">Profile</a>
                 </div>
               </li>
             </ul>

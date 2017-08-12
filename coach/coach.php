@@ -62,7 +62,7 @@
                         <td><?php echo $row['member_last'].", ".$row['member_first'];?></td>
                         <td><?php echo $row['sports_name'];?></td>
                         <td><?php echo $row['event_name'];?></td>
-                        <td><a href="lineup.php?id=<?php echo $row['coach_id'];?>">View</a></td>
+                        <td><a href="athlete.php?sports=<?php echo $row['sports_name'];?>">View</a></td>
                       </tr>
 
 <?php }?>           

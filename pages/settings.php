@@ -75,10 +75,13 @@
                             if ($status<>"active")
                             {
                               echo "<a href='set.php?id=$sid' class='small-box-footer btn btn-primary'>Set Active</a>";
+
                             }
                             else
                             {
-                              echo $status;
+                              
+                              echo "<button type='button' class='btn btn-default btn-sm active'><i class='fa fa-square text-green'></i> $status
+                  </button>";
                             }
                           ?>
                         </td>
@@ -136,16 +139,99 @@
                
 <?php $i++; }?>           
                     </tbody>
-                    <tfoot>
+                  </table>
+                  <br>
+                  <table id="example1" class="table table-bordered table-striped">
+                    <thead>
                       <tr>
                         <th>#</th>
-                        <th>Semester</th>
-                        <th>School Year</th>
+                        <th>Event</th>
+                        <th>Date</th>
                         <th>Status</th>
-                      </tr>           
-                    </tfoot>
-                  </table>
+                      </tr>
+                    </thead>
+                     
+                    <tbody>
+                    <form method="post" action="forward.php">
+<?php
+    $query=mysqli_query($con,"select * from event order by event_date")or die(mysqli_error($con));
+        $i=1;
+        while($row=mysqli_fetch_array($query)){
+          $event_id=$row['event_id'];
+          $status=$row['event_status'];
+    
+?>
+                      <tr>
+                        <td><?php echo $i;?></td>
+                        <td><?php echo $row['event_name'];?></td>
+                        <td><?php echo date("M d, Y",strtotime($row['event_date']));?></td>
+                        <td>
+                          <?php 
+                            if ($status<>"active")
+                            {
+                              echo "<a href='setevent.php?id=$event_id' class='small-box-footer btn btn-primary'>Set Active</a>";
+                            }
+                            else
+                            {
+                              echo "<button type='button' class='btn btn-default btn-sm active'><i class='fa fa-square text-green'></i> $status
+                  </button>";
+                            }
+                          ?>
+                      </tr>
+                      
+<div id="update<?php echo $row['athlete_id'];?>" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content" style="height:auto">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Update Athlete Details</h4>
+              </div>
+              <div class="modal-body">
+        <form class="form-horizontal" method="post" action="athlete_update.php" enctype='multipart/form-data'>
+            <div class="form-group">
+                <label class="control-label col-lg-3" for="date">Athlete Name</label>
+                <div class="col-md-9">
+                    <input type="hidden" name="id" value="<?php echo $row['athlete_id'];?>">
+                    <select class="form-control select2" style="width: 100%;" name="name" required>
+                    <?php
+                      $query2=mysqli_query($con,"select * from member where member_type='Student' order by member_last,member_first")or die(mysqli_error($con));
+                          while($row2=mysqli_fetch_array($query2)){
+                    ?>
+                          <option value="<?php echo $row2['member_id'];?>"><?php echo $row2['member_last'].", ".$row2['member_first'];?></option>
+                    <?php }?>
+                    </select>
+                </div><!-- /.input group -->
+            </div><!-- /.form group -->
+            <div class="form-group">
+                <label class="control-label col-lg-3" for="date">Sport</label>
+                <div class="col-md-9">
+                    <select class="form-control select2" style="width: 100%;" name="sport" required>
+                    <?php
+                      $query2=mysqli_query($con,"select * from sports order by sports_name")or die(mysqli_error($con));
+                          while($row2=mysqli_fetch_array($query2)){
+                    ?>
+                          <option value="<?php echo $row2['sports_id'];?>"><?php echo $row2['sports_name'];?></option>
+                    <?php }?>
+                    </select>
+                </div><!-- /.input group -->
+            </div><!-- /.form group -->
+        
+              </div><br><br><br><hr>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-info">Save changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+        </form>
+        </div>
+      
+        </div><!--end of modal-dialog-->
+ </div>
+ <!--end of modal--> 
                
+<?php $i++; }?>           
+                    </tbody>
+                  </table>
                 </div><!-- /.box-body -->
                 </form>
           <!-- /.nav-tabs-custom -->

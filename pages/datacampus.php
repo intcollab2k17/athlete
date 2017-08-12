@@ -1,7 +1,7 @@
 <?php
 include('session.php');
 
-$result = mysqli_query($con,"SELECT course,COUNT(*) FROM athlete natural join member natural join settings where status='active' and campus_id='1' group by course");
+$result = mysqli_query($con,"SELECT campus,COUNT(*) FROM athlete natural join member natural join settings natural join campus where status='active' group by campus_id");
 	
 $rows = array();
 while($r = mysqli_fetch_array($result)) {

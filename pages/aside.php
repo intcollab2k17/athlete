@@ -21,9 +21,9 @@
             <li><a href="category.php"><i class="fa fa-circle-o"></i> Category</a></li>
             <li><a href="course.php"><i class="fa fa-circle-o"></i> Course</a></li>
             <li><a href="equipment.php"><i class="fa fa-circle-o"></i> Equipment</a></li>
+            <li><a href="event.php"><i class="fa fa-circle-o"></i> Event</a></li>
             <li><a href="gallery.php"><i class="fa fa-circle-o"></i> Gallery</a></li>
             <li><a href="member.php"><i class="fa fa-circle-o"></i> Members</a></li>
-            <li><a href="sy.php"><i class="fa fa-circle-o"></i> School Year</a></li>
             <li><a href="sports.php"><i class="fa fa-circle-o"></i> Sports</a></li>
             <li><a href="user.php"><i class="fa fa-circle-o"></i> User</a></li>
           </ul>
@@ -54,6 +54,7 @@
           <ul class="treeview-menu">
             <li><a href="coach.php"><i class="fa fa-circle-o"></i> Coaches</a></li>
             <li><a href="inventory.php"><i class="fa fa-circle-o"></i> Inventory</a></li>
+            <li><a href="lineup_report.php"><i class="fa fa-circle-o"></i> Lineups</a></li>
             <li><a href="return.php"><i class="fa fa-circle-o"></i> Return</a></li>
             <li><a href="statistics.php"><i class="fa fa-circle-o"></i> Statistics</a></li>
           </ul>
