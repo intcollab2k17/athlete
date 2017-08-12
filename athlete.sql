@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 12, 2017 at 03:03 AM
+-- Generation Time: Aug 13, 2017 at 01:52 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -68,7 +68,11 @@ CREATE TABLE `athlete` (
 --
 
 INSERT INTO `athlete` (`athlete_id`, `sports_id`, `settings_id`, `member_id`, `coach_id`, `event_id`, `uniform`, `remarks`, `scholar_status`) VALUES
-(6, '3', 1, 7, 3, 0, 0, '', 0);
+(6, '3', 1, 7, 3, 1, 0, '', 0),
+(7, '4', 5, 7, 0, 1, 0, '', 0),
+(8, '8', 5, 9, 0, 1, 1, '', 0),
+(10, '8', 5, 9, 0, 1, 0, '', 0),
+(11, '3', 5, 9, 5, 1, 0, '', 0);
 
 -- --------------------------------------------------------
 
@@ -122,7 +126,9 @@ CREATE TABLE `campus` (
 
 INSERT INTO `campus` (`campus_id`, `campus`) VALUES
 (1, 'Talisay'),
-(2, 'Fortune Towne');
+(2, 'Fortune Towne'),
+(3, 'Alijis'),
+(4, 'Binalbagan');
 
 -- --------------------------------------------------------
 
@@ -163,7 +169,9 @@ CREATE TABLE `coach` (
 --
 
 INSERT INTO `coach` (`coach_id`, `member_id`, `sports_id`, `settings_id`, `event_id`) VALUES
-(3, 8, 3, 1, 1);
+(3, 8, 3, 1, 1),
+(4, 10, 3, 5, 1),
+(5, 12, 3, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -241,16 +249,18 @@ INSERT INTO `equipment` (`equipment_id`, `equipment_name`, `equipment_desc`, `qt
 CREATE TABLE `event` (
   `event_id` int(11) NOT NULL,
   `event_name` varchar(100) NOT NULL,
-  `event_status` varchar(15) NOT NULL
+  `event_status` varchar(15) NOT NULL,
+  `event_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `event`
 --
 
-INSERT INTO `event` (`event_id`, `event_name`, `event_status`) VALUES
-(1, 'Intramurals 2017', 'active'),
-(2, 'Quadra 2017', '');
+INSERT INTO `event` (`event_id`, `event_name`, `event_status`, `event_date`) VALUES
+(1, 'Intramurals 2017', '', '2017-08-18'),
+(2, 'Quadra 2017', 'active', '2017-10-20'),
+(3, 'SCUAA', '', '2017-10-09');
 
 -- --------------------------------------------------------
 
@@ -278,7 +288,11 @@ CREATE TABLE `member` (
 
 INSERT INTO `member` (`member_id`, `member_last`, `member_first`, `gender`, `ys`, `member_type`, `course`, `address`, `bday`, `campus_id`, `member_status`) VALUES
 (7, 'Aboy', 'Kenneth', 'Male', '4B', 'Student', 'BSIS', 'Silay City', '0000-00-00', 1, 1),
-(8, 'Cango', 'Rogelio', 'Male', 'NA', 'Faculty', 'NA', 'Talisay City', '0000-00-00', 1, 1);
+(8, 'Cango', 'Rogelio', 'Male', 'NA', 'Faculty', 'NA', 'Talisay City', '0000-00-00', 1, 1),
+(9, 'Britanica', 'Louie', 'Male', '1B', 'Student', 'BEED', 'Silay City', '0000-00-00', 2, 1),
+(10, 'Rivera', 'Naldz', 'Male', 'NA', 'Faculty', 'NA', 'Banago', '0000-00-00', 3, 1),
+(11, ' Roque', 'Aljaine', 'Female', '1A', 'Student', 'BSCE', 'Busay', '0000-00-00', 3, 1),
+(12, 'Uy', 'Manuel', 'Male', 'NA', 'Faculty', 'NA', 'Bacolod', '0000-00-00', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -378,9 +392,7 @@ CREATE TABLE `sports` (
 INSERT INTO `sports` (`sports_id`, `sports_name`, `sports_status`) VALUES
 (3, 'Swimming', 'active'),
 (4, 'Volleyball', 'active'),
-(5, 'saa', 'active'),
-(6, 'sss', 'inactive'),
-(7, 'dd', 'active');
+(8, 'Basketball', 'active');
 
 -- --------------------------------------------------------
 
@@ -422,12 +434,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `name`, `status`, `designation`, `campus_id`) VALUES
-(2, 'admin', 'password', 'Kaye Merida', '', 'director', 0),
-(3, 'admin', 'admin', 'jez pez', '', 'Sports Director', 0),
-(4, 'selena', 'pass', 'selena gomez', '', '', 0),
-(5, 'ken', '123', 'Kenneth Aboy', '', 'Sports Coordinator', 0),
-(6, 'a', 'a', 'dsds', '', 'Sports Director', 0),
-(7, 'a', 'aa', 'qq', '', 'Sports Director', 0);
+(3, 'admin', 'admin', 'Lee', '', 'Sports Director', 1),
+(8, 'jo', 'admin', 'Jo Sallilas', '', 'Sports Coordinator', 1),
+(9, 'manuel', 'admin', 'Manuel Uy', '', 'Sports Coordinator', 2),
+(10, 'ailyn', 'admin', 'Ailyn Tanaleon', '', 'Sports Coordinator', 4);
 
 --
 -- Indexes for dumped tables
@@ -572,7 +582,7 @@ ALTER TABLE `album_content`
 -- AUTO_INCREMENT for table `athlete`
 --
 ALTER TABLE `athlete`
-  MODIFY `athlete_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `athlete_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `award`
 --
@@ -587,7 +597,7 @@ ALTER TABLE `borrow`
 -- AUTO_INCREMENT for table `campus`
 --
 ALTER TABLE `campus`
-  MODIFY `campus_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `campus_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `category`
 --
@@ -597,7 +607,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `coach`
 --
 ALTER TABLE `coach`
-  MODIFY `coach_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `coach_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `course`
 --
@@ -617,12 +627,12 @@ ALTER TABLE `equipment`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `sched`
 --
@@ -647,7 +657,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `sports`
 --
 ALTER TABLE `sports`
-  MODIFY `sports_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `sports_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `sy`
 --
@@ -657,7 +667,7 @@ ALTER TABLE `sy`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
