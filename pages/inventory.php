@@ -19,7 +19,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Members
+        Inventory
         <small>Control panel</small>
       </h1>
       <ol class="breadcrumb">
@@ -65,13 +65,6 @@
 
 <?php }?>           
                     </tbody>
-                    <tfoot>
-                      <tr>
-                        <th>Equipment Name</th>
-                        <th>Description</th>
-                        <th>Quantity on Hand</th>
-                      </tr>           
-                    </tfoot>
                   </table>
                 </div><!-- /.box-body -->
 

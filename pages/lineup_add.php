@@ -7,8 +7,8 @@ include('session.php');
 
 	$query=mysqli_query($con,"select * from coach where coach_id='$cid'")or die(mysqli_error($con));
 		$row=mysqli_fetch_array($query);
-			$sport = $_POST['sports_id'];
-			$settings = $_POST['settings_id'];
+			$sport = $row['sports_id'];
+			$settings = $row['settings_id'];
 	
 			mysqli_query($con,"INSERT INTO athlete(member_id,sports_id,settings_id,coach_id) VALUES('$name','$sport','$settings','$cid')")or die(mysqli_error($con));
 

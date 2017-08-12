@@ -6,8 +6,9 @@ include('session.php');
     $settings=$row['settings_id'];  
 	$coach = $_POST['coach'];
 	$sport = $_POST['sport'];
+	$event = $_POST['event'];
 	
-	mysqli_query($con,"INSERT INTO coach(member_id,sports_id,settings_id) VALUES('$coach','$sport','$settings')")or die(mysqli_error($con));
+	mysqli_query($con,"INSERT INTO coach(member_id,sports_id,settings_id,event_id) VALUES('$coach','$sport','$settings','$event')")or die(mysqli_error($con));
 
 			echo "<script type='text/javascript'>alert('Successfully assigned new coach!');</script>";
 			echo "<script>document.location='coach.php'</script>";  

@@ -111,6 +111,19 @@
                         </select>
                     </div><!-- /.input group -->
                   </div><!-- /.form group -->
+                   <div class="form-group">
+                    <label for="date">Event</label>
+                    <div class="input-group col-md-12">
+                      <select class="form-control select2" style="width: 100%;" name="event" required>
+                        <?php
+                          $query2=mysqli_query($con,"select * from event where event_status='active'")or die(mysqli_error());
+                              while($row2=mysqli_fetch_array($query2)){
+                        ?>
+                              <option value="<?php echo $row2['event_id'];?>"><?php echo $row2['event_name'];?></option>
+                        <?php }?>
+                        </select>
+                    </div><!-- /.input group -->
+                  </div><!-- /.form group -->
                   
                   <div class="form-group">
                     <div class="input-group">
