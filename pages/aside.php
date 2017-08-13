@@ -55,7 +55,6 @@
             <li><a href="coach.php"><i class="fa fa-circle-o"></i> Coaches</a></li>
             <li><a href="inventory.php"><i class="fa fa-circle-o"></i> Inventory</a></li>
             <li><a href="lineup_report.php"><i class="fa fa-circle-o"></i> Lineups</a></li>
-            <li><a href="return.php"><i class="fa fa-circle-o"></i> Return</a></li>
             <li><a href="statistics.php"><i class="fa fa-circle-o"></i> Statistics</a></li>
           </ul>
         </li>

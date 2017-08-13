@@ -20,7 +20,7 @@
     <section class="content-header">
       <h1>
         Members
-        <small>Control panel</small>
+        <small><button class="btn btn-info" onclick="window.print();"><i class="glyphicon glyphicon-print"></i> Print </button></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -42,8 +42,8 @@
                   <h3 class="box-title">Athlete Statistics by Course Talisay Campus</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <div id="graph" class="col-md-6"></div>
-                  <div class="col-md-6">
+                  <div id="graph" class="col-md-6 col-sm-6"></div>
+                  <div class="col-md-6 col-sm-6">
                     <table id="" class="table table-bordered table-striped">
                       <thead>
                         <tr>

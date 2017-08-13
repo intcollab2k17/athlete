@@ -20,7 +20,7 @@
     <section class="content-header">
       <h1>
         Inventory
-        <small>Control panel</small>
+        <small><button class="btn btn-info" onclick="window.print();"><i class="glyphicon glyphicon-print"></i> Print </button></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
