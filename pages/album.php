@@ -50,12 +50,14 @@
     
                       $query1=mysqli_query($con,"select * from album_content where album_id='$album_id'")or die(mysqli_error($con));
                           while($row1=mysqli_fetch_array($query1)){
+                              $acid=$row1['album_content_id'];
+                              $aid=$row1['album_id'];
                   ?>
                     <div class="col-xs-3" style="text-align: center;">
                       <div class="box box-success">
                         <div class="box-header">
                           <a href="../dist/uploads/<?php echo $row1['file'];?>"><img src="../dist/uploads/<?php echo $row1['file'];?>" style="height: 130px;width: 100%"></a>
-                         
+                            <a href="remove_pic.php?id=<?php echo $acid;?>&aid=<?php echo $aid;?>">Remove</a>
                         </div><!-- /.box-header -->
                        
                       </div><!-- /.col -->        
@@ -89,7 +91,7 @@
                       <button class="btn btn-info btn-lg" id="daterange-btn" name="">
                         Save
                       </button>
-                       <button class="btn btn-lg" id="daterange-btn" type="reser">
+                       <button class="btn btn-lg" id="daterange-btn" type="reset">
                         Clear
                       </button>
                     </div>
