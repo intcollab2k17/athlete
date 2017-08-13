@@ -152,7 +152,7 @@
                       <button class="btn btn-info btn-lg" id="daterange-btn" name="">
                         Save
                       </button>
-                       <button class="btn btn-lg" id="daterange-btn">
+                       <button type="reset" class="btn btn-lg" id="daterange-btn">
                         Clear
                       </button>
                     </div>

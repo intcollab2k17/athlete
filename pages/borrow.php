@@ -51,7 +51,7 @@
                     <tbody>
 <?php
     
-    $query=mysqli_query($con,"select * from borrow natural join equipment natural join member")or die(mysqli_error($con));
+    $query=mysqli_query($con,"select * from borrow natural join equipment natural join member where status='0'")or die(mysqli_error($con));
         while($row=mysqli_fetch_array($query)){
             $id=$row['borrow_id'];
             if ($row['date_returned']!='0000-00-00 00:00:00')
