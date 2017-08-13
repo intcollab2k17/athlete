@@ -272,7 +272,7 @@
                       <button class="btn btn-info btn-lg" id="daterange-btn" name="">
                         Set
                       </button>
-                       <button class="btn btn-lg" id="daterange-btn">
+                       <button class="btn btn-lg" id="daterange-btn" type="reset">
                         Clear
                       </button>
                     </div>

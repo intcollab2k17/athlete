@@ -63,7 +63,7 @@
     $query=mysqli_query($con,"select *,athlete.member_id as member from athlete natural join member left join sports on athlete.sports_id=sports.sports_id")or die(mysqli_error($con));
         while($row=mysqli_fetch_array($query)){
           $aid=$row['athlete_id'];
-    
+          $mid=$row['member_id'];
 ?>
                       <tr>
                         <td><?php echo $row['member_last'];?></td>
@@ -80,7 +80,7 @@
                         </td>
                         <td>
                         
-                          <a href="profile.php?id=<?php echo $row['member'];?>" style="color:#fff;" class="small-box-footer"><i class="glyphicon glyphicon-eye-open text-green"></i></a>
+                          <a href="profile.php?id=<?php echo $mid;?>" style="color:#fff;" class="small-box-footer"><i class="glyphicon glyphicon-eye-open text-green"></i></a>
                         </td>
                       </tr>
                       
@@ -287,7 +287,7 @@
                       <button class="btn btn-info btn-lg" id="daterange-btn" name="">
                         Save
                       </button>
-                       <button class="btn btn-lg" id="daterange-btn">
+                       <button class="btn btn-lg" id="daterange-btn" type="reset">
                         Clear
                       </button>
                     </div>

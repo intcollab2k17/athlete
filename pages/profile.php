@@ -50,8 +50,6 @@
                       <tr>
                         <th>Sport</th>
                         <th>Event</th>
-                        <th>Sem</th>
-                        <th>School Year</th>
                         <th>Award</th>
                       </tr>
                     </thead>
@@ -60,15 +58,13 @@
                     <form method="post" action="">
 <?php
     $id=$_REQUEST['id'];
-    $query=mysqli_query($con,"select * from athlete natural join member natural join sports natural join settings natural join event where member_id='$id'")or die(mysqli_error($con));
+    $query=mysqli_query($con,"select * from athlete natural join member natural join sports natural join event where member_id='$id'")or die(mysqli_error($con));
         while($row=mysqli_fetch_array($query)){
           $aid=$row['athlete_id'];
 ?>
                       <tr>
                         <td><?php echo $row['sports_name'];?></td>
                         <td><?php echo $row['event_name'];?></td>
-                        <td><?php echo $row['sem'];?></td>
-                        <td><?php echo $row['sy'];?></td>
                          <td>
                           <?php
                             $aw=mysqli_query($con,"select * from award where athlete_id='$aid'")or die(mysqli_error($con));
@@ -185,8 +181,6 @@
                       <tr>
                         <th>Sport</th>
                         <th>Event</th>
-                        <th>Sem</th>
-                        <th>School Year</th>
                         <th>Award</th>
                       </tr>           
                     </tfoot>
