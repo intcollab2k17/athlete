@@ -56,6 +56,7 @@
                       <tr>
                         <th>Athlete Last Name</th>
                         <th>Athlete First Name</th>
+                        <th>T-Shirt</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -72,6 +73,8 @@
                       <tr>
                         <td><?php echo $row['member_last'];?></td>
                         <td><?php echo $row['member_first'];?></td>
+                        <td><?php if ($row['uniform']=='1') echo "<span class='btn btn-primary'>Yes</span>";
+                        else echo "<span class='btn btn-danger'>No</span>";?></td>
                         <td>
                           <a href="#remove<?php echo $row['athlete_id'];?>" data-target="#remove<?php echo $row['athlete_id'];?>" data-toggle="modal" style="color:#fff;" class="small-box-footer"><i class="glyphicon glyphicon-trash text-red"></i></a>
                         </td>
@@ -111,6 +114,7 @@
                       <tr>
                         <th>Athlete Last Name</th>
                         <th>Athlete First Name</th>
+                        <th>T-Shirt</th>
                         <th>Action</th>
                       </tr>           
                     </tfoot>

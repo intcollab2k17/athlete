@@ -56,6 +56,7 @@
             <li><a href="inventory.php"><i class="fa fa-circle-o"></i> Inventory</a></li>
             <li><a href="lineup_report.php"><i class="fa fa-circle-o"></i> Lineups</a></li>
             <li><a href="statistics.php"><i class="fa fa-circle-o"></i> Statistics</a></li>
+            <li><a href="tshirt.php"><i class="fa fa-circle-o"></i> T-Shirt</a></li>
           </ul>
         </li>
         <li class="treeview">
