@@ -73,7 +73,7 @@
         while($row=mysqli_fetch_array($query)){
           $sid=$row['settings_id'];
 ?>          
-            <li><a href="archive.php"><i class="fa fa-circle-o"></i> <?php echo $row['sem']." ".$row['sy'];?></a></li>
+            <li><a href="archive.php?sid=<?php echo $sid;?>"><i class="fa fa-circle-o"></i> <?php echo $row['sem']." ".$row['sy'];?></a></li>
 <?php }?>          
           </ul>
         </li>
