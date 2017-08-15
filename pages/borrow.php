@@ -34,6 +34,62 @@
       <!-- Main row -->
       <div class="row">
         <!-- Left col -->
+          <section class="col-lg-3 connectedSortable">
+
+          <!-- solid sales graph -->
+          <div class="box box-primary">
+                <div class="box-header">
+                  <h3 class="box-title">Borrow Equipments</h3>
+                </div>
+                <div class="box-body">
+                  <!-- Date range -->
+        <form method="post" action="borrow_add.php">
+          <div class="row" style="min-height:400px">
+            <div class="col-md-12">
+              <div class="form-group">
+              <label for="date">Select Equipment</label>
+               
+                <select class="form-control select2" name="equipment" tabindex="1" autofocus required>
+                <?php
+                   $query2=mysqli_query($con,"select * from equipment order by equipment_name")or die(mysqli_error($con));
+                      while($row=mysqli_fetch_array($query2)){
+                  
+                ?>
+                    <option value="<?php echo $row['equipment_id'];?>"><?php echo $row['equipment_name']." Available(".$row['qty'].")";?></option>
+                  <?php }?>
+                </select>
+              </div><!-- /.form group -->
+            <div class="form-group">
+              <label for="date">Quantity</label>
+              <div class="input-group">
+                <input type="text" class="form-control pull-right" id="qty" name="qty" placeholder="Quantity" tabindex="2" value="" required>
+              </div><!-- /.input group -->
+            </div><!-- /.form group -->
+            <div class="form-group">
+              <label for="date"></label>
+              <div class="input-group">
+                <select class="form-control select2" name="member" required>
+                <?php
+                   $query2=mysqli_query($con,"select * from member where member_status='1' order by member_last,member_first")or die(mysqli_error($con));
+                      while($row=mysqli_fetch_array($query2)){
+                  
+                ?>
+                    <option value="<?php echo $row['member_id'];?>"><?php echo $row['member_last'].", ".$row['member_first'];?></option>
+                  <?php }?>
+                </select>
+              </div>
+            </div>  
+    
+          
+            <div class="form-group">
+              <label for="date"></label>
+              <div class="input-group">
+                <button class="btn btn-lg btn-block btn-success" type="submit" id = "sendBtn">Borrow</button>
+              </div>
+            </div>  
+          </div>
+          </form>
+        </section>
         <section class="col-lg-9 connectedSortable">
           <!-- Custom tabs (Charts with tabs)-->
           <div class="box box-primary">
@@ -117,62 +173,7 @@
         </section>
         <!-- /.Left col -->
         <!-- right col (We are only adding the ID to make the widgets sortable)-->
-        <section class="col-lg-3 connectedSortable">
-
-          <!-- solid sales graph -->
-          <div class="box box-primary">
-                <div class="box-header">
-                  <h3 class="box-title">Borrow Equipments</h3>
-                </div>
-                <div class="box-body">
-                  <!-- Date range -->
-        <form method="post" action="borrow_add.php">
-          <div class="row" style="min-height:400px">
-            <div class="col-md-12">
-              <div class="form-group">
-              <label for="date">Select Equipment</label>
-               
-                <select class="form-control select2" name="equipment" tabindex="1" autofocus required>
-                <?php
-                   $query2=mysqli_query($con,"select * from equipment order by equipment_name")or die(mysqli_error($con));
-                      while($row=mysqli_fetch_array($query2)){
-                  
-                ?>
-                    <option value="<?php echo $row['equipment_id'];?>"><?php echo $row['equipment_name']." Available(".$row['qty'].")";?></option>
-                  <?php }?>
-                </select>
-              </div><!-- /.form group -->
-            <div class="form-group">
-              <label for="date">Quantity</label>
-              <div class="input-group">
-                <input type="number" class="form-control pull-right" id="date" name="qty" placeholder="Quantity" tabindex="2" value="1" required>
-              </div><!-- /.input group -->
-            </div><!-- /.form group -->
-            <div class="form-group">
-              <label for="date"></label>
-              <div class="input-group">
-                <select class="form-control select2" name="member" required>
-                <?php
-                   $query2=mysqli_query($con,"select * from member where member_status='1' order by member_last,member_first")or die(mysqli_error($con));
-                      while($row=mysqli_fetch_array($query2)){
-                  
-                ?>
-                    <option value="<?php echo $row['member_id'];?>"><?php echo $row['member_last'].", ".$row['member_first'];?></option>
-                  <?php }?>
-                </select>
-              </div>
-            </div>  
-    
-          
-            <div class="form-group">
-              <label for="date"></label>
-              <div class="input-group">
-                <button class="btn btn-lg btn-block btn-success" type="submit">Borrow</button>
-              </div>
-            </div>  
-          </div>
-          </form>
-        </section>
+      
         <!-- right col -->
       </div>
       <!-- /.row (main row) -->
@@ -187,5 +188,26 @@
 <!-- ./wrapper -->
 
 <?php include('script.php');?>
+<script>
+          jQuery("#qty").on('change', function(){                      
+            jQuery.ajax({
+              type:'POST',
+              url: 'check_item.php',
+              data: {qty:jQuery('#qty').val()}
+            }).done(function(data){             
+              if(parseInt(data)) {
+                $('#qty').css('border', '1px solid green'); 
+                 $('#sendBtn').css('display', 'block');               
+              }
+               else if(!parseInt(data)){
+                alert('Error the item in not available anymore....'); 
+                 $('#sendBtn').css('display', 'none');
+              }
+              else{
+                $('#sendBtn').css('display', 'block');   
+              }
+            });
+          });
+    </script>
 </body>
 </html>

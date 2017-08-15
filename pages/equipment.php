@@ -33,6 +33,50 @@
       <!-- Small boxes (Stat box) -->
       <!-- Main row -->
       <div class="row">
+       <section class="col-lg-3 connectedSortable">
+
+          <!-- solid sales graph -->
+          <div class="box box-primary">
+                <div class="box-header">
+                  <h3 class="box-title">Add New Equipment</h3>
+                </div>
+                <div class="box-body">
+                  <!-- Date range -->
+                  <form method="post" action="equipment_add.php" enctype="multipart/form-data">
+  
+                  <div class="form-group">
+                    <label for="date">Equipment Name</label>
+                    <div class="input-group col-md-12">
+                      <input type="text" class="form-control pull-right" id="date" name="name" placeholder="Equipment Name" required>
+                    </div><!-- /.input group -->
+                  </div><!-- /.form group -->
+                  <div class="form-group">
+                    <label for="date">Description</label>
+                    <div class="input-group col-md-12">
+                      <textarea class="form-control" name="desc" placeholder="Description"></textarea>
+                    </div><!-- /.input group -->
+                  </div><!-- /.form group -->
+                  <div class="form-group">
+                    <label for="date">Quantity</label>
+                    <div class="input-group col-md-12">
+                      <input type="number" class="form-control pull-right" id="date" name="qty" placeholder="Quantity" required>
+                    </div><!-- /.input group -->
+                  </div><!-- /.form group -->
+                  <div class="form-group">
+                    <div class="input-group">
+                      <button class="btn btn-info" id="daterange-btn" name="">
+                        Save
+                      </button>
+                       <button class="btn" id="daterange-btn" type="reset">
+                        Clear
+                      </button>
+                    </div>
+                  </div><!-- /.form group -->
+        </form> 
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+          
+        </section>
         <!-- Left col -->
         <section class="col-lg-9 connectedSortable">
           <!-- Custom tabs (Charts with tabs)-->
@@ -125,50 +169,7 @@
         </section>
         <!-- /.Left col -->
         <!-- right col (We are only adding the ID to make the widgets sortable)-->
-        <section class="col-lg-3 connectedSortable">
-
-          <!-- solid sales graph -->
-          <div class="box box-primary">
-                <div class="box-header">
-                  <h3 class="box-title">Add New Equipment</h3>
-                </div>
-                <div class="box-body">
-                  <!-- Date range -->
-                  <form method="post" action="equipment_add.php" enctype="multipart/form-data">
-  
-                  <div class="form-group">
-                    <label for="date">Equipment Name</label>
-                    <div class="input-group col-md-12">
-                      <input type="text" class="form-control pull-right" id="date" name="name" placeholder="Equipment Name" required>
-                    </div><!-- /.input group -->
-                  </div><!-- /.form group -->
-                  <div class="form-group">
-                    <label for="date">Description</label>
-                    <div class="input-group col-md-12">
-                      <textarea class="form-control" name="desc" placeholder="Description"></textarea>
-                    </div><!-- /.input group -->
-                  </div><!-- /.form group -->
-                  <div class="form-group">
-                    <label for="date">Quantity</label>
-                    <div class="input-group col-md-12">
-                      <input type="number" class="form-control pull-right" id="date" name="qty" placeholder="Quantity" required>
-                    </div><!-- /.input group -->
-                  </div><!-- /.form group -->
-                  <div class="form-group">
-                    <div class="input-group">
-                      <button class="btn btn-info" id="daterange-btn" name="">
-                        Save
-                      </button>
-                       <button class="btn" id="daterange-btn" type="reset">
-                        Clear
-                      </button>
-                    </div>
-                  </div><!-- /.form group -->
-        </form> 
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-          
-        </section>
+       
         <!-- right col -->
       </div>
       <!-- /.row (main row) -->

@@ -33,49 +33,7 @@
       <!-- Small boxes (Stat box) -->
       <!-- Main row -->
       <div class="row">
-        <!-- Left col -->
-        <section class="col-lg-9 connectedSortable">
-          <!-- Custom tabs (Charts with tabs)-->
-          <div class="box box-success">
-    
-                <div class="box-header">
-                  <h3 class="box-title">List of Coaches</h3>
-                </div><!-- /.box-header -->
-                <div class="box-body">
-                  <table id="" class="table table-bordered table-striped">
-                    <thead>
-                      <tr>
-                        <th>Coach Name</th>
-                        <th>Sports Name</th>
-                        <th>Event</th>
-                        <th>Line Up</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-<?php
-    
-    $query=mysqli_query($con,"select * from coach natural join member natural join sports natural join event where settings_id='$settings' order by sports_name")or die(mysqli_error($con));
-        while($row=mysqli_fetch_array($query)){
-    
-?>
-                      <tr>
-                        <td><?php echo $row['member_last'].", ".$row['member_first'];?></td>
-                        <td><?php echo $row['sports_name'];?></td>
-                        <td><?php echo $row['event_name'];?></td>
-                        <td><a href="lineup.php?id=<?php echo $row['coach_id'];?>">View</a></td>
-                      </tr>
-
-<?php }?>           
-                    </tbody>
-                  </table>
-                </div><!-- /.box-body -->
-
-        </div><!-- /.box -->
-          <!-- /.nav-tabs-custom -->
-        </section>
-        <!-- /.Left col -->
-        <!-- right col (We are only adding the ID to make the widgets sortable)-->
-        <section class="col-lg-3 connectedSortable">
+      <section class="col-lg-3 connectedSortable">
 
           <!-- solid sales graph -->
           <div class="box box-success">
@@ -141,6 +99,49 @@
 
 
         </section>
+        <!-- Left col -->
+        <section class="col-lg-9 connectedSortable">
+          <!-- Custom tabs (Charts with tabs)-->
+          <div class="box box-success">
+    
+                <div class="box-header">
+                  <h3 class="box-title">List of Coaches</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <table id="" class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>Coach Name</th>
+                        <th>Sports Name</th>
+                        <th>Event</th>
+                        <th>Line Up</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+<?php
+    
+    $query=mysqli_query($con,"select * from coach natural join member natural join sports natural join event where settings_id='$settings' order by sports_name")or die(mysqli_error($con));
+        while($row=mysqli_fetch_array($query)){
+    
+?>
+                      <tr>
+                        <td><?php echo $row['member_last'].", ".$row['member_first'];?></td>
+                        <td><?php echo $row['sports_name'];?></td>
+                        <td><?php echo $row['event_name'];?></td>
+                        <td><a href="lineup.php?id=<?php echo $row['coach_id'];?>">View</a></td>
+                      </tr>
+
+<?php }?>           
+                    </tbody>
+                  </table>
+                </div><!-- /.box-body -->
+
+        </div><!-- /.box -->
+          <!-- /.nav-tabs-custom -->
+        </section>
+        <!-- /.Left col -->
+        <!-- right col (We are only adding the ID to make the widgets sortable)-->
+        
         <!-- right col -->
       </div>
       <!-- /.row (main row) -->

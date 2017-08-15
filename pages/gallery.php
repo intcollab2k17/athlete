@@ -33,36 +33,7 @@
       <!-- Small boxes (Stat box) -->
       <!-- Main row -->
       <div class="row">
-        <!-- Left col -->
-        <section class="col-lg-9 connectedSortable">
-          <!-- Custom tabs (Charts with tabs)-->
-          <div class="box box-success">
-                <div class="box-header">
-                  <h3 class="box-title">List of Albums</h3>
-                </div><!-- /.box-header -->
-                <div class="box-body">
-                  <?php
-    
-                      $query=mysqli_query($con,"select * from album order by date_posted desc")or die(mysqli_error($con));
-                          while($row=mysqli_fetch_array($query)){
-                  ?>
-                    <div class="col-xs-3" style="text-align: center;">
-                      <div class="box box-success">
-                        <div class="box-header">
-                          <a href="album.php?album_id=<?php echo $row['album_id'];?>"><img src="../dist/img/gallery.jpg" style="height: 100%;width: 100%"></a>
-                          <h4 class="box-title"><?php echo $row['album_name'];?></h4>
-                        </div><!-- /.box-header -->
-                        <div class="box-body">
-                          <?php echo $row['album_description'];?>
-                        </div><!-- /.box-body -->
-                      </div><!-- /.col -->        
-                    </div><!-- /.box-body -->
-<?php }?> 
-          <!-- /.nav-tabs-custom -->
-        </section>
-        <!-- /.Left col -->
-        <!-- right col (We are only adding the ID to make the widgets sortable)-->
-        <section class="col-lg-3 connectedSortable">
+       <section class="col-lg-3 connectedSortable">
 
           <!-- solid sales graph -->
           <div class="box box-success">
@@ -100,6 +71,36 @@
               </div><!-- /.box -->
 
         </section>
+        <!-- Left col -->
+        <section class="col-lg-9 connectedSortable">
+          <!-- Custom tabs (Charts with tabs)-->
+          <div class="box box-success">
+                <div class="box-header">
+                  <h3 class="box-title">List of Albums</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <?php
+    
+                      $query=mysqli_query($con,"select * from album order by date_posted desc")or die(mysqli_error($con));
+                          while($row=mysqli_fetch_array($query)){
+                  ?>
+                    <div class="col-xs-3" style="text-align: center;">
+                      <div class="box box-success">
+                        <div class="box-header">
+                          <a href="album.php?album_id=<?php echo $row['album_id'];?>"><img src="../dist/img/gallery.jpg" style="height: 100%;width: 100%"></a>
+                          <h4 class="box-title"><?php echo $row['album_name'];?></h4>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                          <?php echo $row['album_description'];?>
+                        </div><!-- /.box-body -->
+                      </div><!-- /.col -->        
+                    </div><!-- /.box-body -->
+<?php }?> 
+          <!-- /.nav-tabs-custom -->
+        </section>
+        <!-- /.Left col -->
+        <!-- right col (We are only adding the ID to make the widgets sortable)-->
+       
         <!-- right col -->
       </div>
       <!-- /.row (main row) -->

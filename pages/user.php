@@ -33,6 +33,71 @@
       <!-- Small boxes (Stat box) -->
       <!-- Main row -->
       <div class="row">
+      <section class="col-lg-3 connectedSortable">
+
+          <!-- solid sales graph -->
+          <div class="box box-success">
+                <div class="box-header">
+                  <h3 class="box-title">User</h3>
+                </div>
+                <div class="box-body">
+                  <!-- Date range -->
+                  <form method="post" action="user_add.php" enctype="multipart/form-data">
+                  <div class="form-group">
+                    <label for="date">Name</label>
+                    <div class="input-group col-md-12">
+                      <input type="text" class="form-control pull-right" id="date" name="name" placeholder="Full Name" required>
+                    </div><!-- /.input group -->
+                  </div><!-- /.form group -->
+                  <div class="form-group">
+                    <label for="date">Username</label>
+                    <div class="input-group col-md-12">
+                      <input type="text" class="form-control pull-right" id="date" name="username" placeholder="Username" required>
+                    </div><!-- /.input group -->
+                  </div><!-- /.form group -->
+                  <div class="form-group">
+                    <label for="date">Password</label>
+                    <div class="input-group col-md-12">
+                      <input type="password" class="form-control pull-right" id="date" name="password" placeholder="Password" required>
+                    </div><!-- /.input group -->
+                  </div><!-- /.form group -->
+                  <div class="form-group">
+                    <label for="date">Designation</label>
+                    <div class="input-group col-md-12">
+                    <select class="form-control select2" style="width: 100%;" name="designation" required>
+                          <option>Sports Director</option>
+                          <option>Sports Coordinator</option>
+                    </select>
+                    </div><!-- /.input group -->
+                </div><!-- /.form group -->
+                <div class="form-group">
+              <label for="date">Campus</label>
+               
+                <select class="form-control select2" name="campus" required>
+                <?php
+                   $query2=mysqli_query($con,"select * from campus order by campus")or die(mysqli_error($con));
+                      while($row=mysqli_fetch_array($query2)){
+                  
+                ?>
+                    <option value="<?php echo $row['campus_id'];?>"><?php echo $row['campus'];?></option>
+                  <?php }?>
+                </select>
+              </div><!-- /.form group -->
+                  <div class="form-group">
+                    <div class="input-group">
+                      <button class="btn btn-info btn-lg" id="daterange-btn" name="">
+                        Save
+                      </button>
+                       <button class="btn btn-lg" id="daterange-btn" type="reset">
+                        Clear
+                      </button>
+                    </div>
+                  </div><!-- /.form group -->
+        </form> 
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
+        </section>
         <!-- Left col -->
         <section class="col-lg-9 connectedSortable">
           <!-- Custom tabs (Charts with tabs)-->
@@ -151,71 +216,7 @@
         </section>
         <!-- /.Left col -->
         <!-- right col (We are only adding the ID to make the widgets sortable)-->
-        <section class="col-lg-3 connectedSortable">
-
-          <!-- solid sales graph -->
-          <div class="box box-success">
-                <div class="box-header">
-                  <h3 class="box-title">User</h3>
-                </div>
-                <div class="box-body">
-                  <!-- Date range -->
-                  <form method="post" action="user_add.php" enctype="multipart/form-data">
-                  <div class="form-group">
-                    <label for="date">Name</label>
-                    <div class="input-group col-md-12">
-                      <input type="text" class="form-control pull-right" id="date" name="name" placeholder="Full Name" required>
-                    </div><!-- /.input group -->
-                  </div><!-- /.form group -->
-                  <div class="form-group">
-                    <label for="date">Username</label>
-                    <div class="input-group col-md-12">
-                      <input type="text" class="form-control pull-right" id="date" name="username" placeholder="Username" required>
-                    </div><!-- /.input group -->
-                  </div><!-- /.form group -->
-                  <div class="form-group">
-                    <label for="date">Password</label>
-                    <div class="input-group col-md-12">
-                      <input type="password" class="form-control pull-right" id="date" name="password" placeholder="Password" required>
-                    </div><!-- /.input group -->
-                  </div><!-- /.form group -->
-                  <div class="form-group">
-                    <label for="date">Designation</label>
-                    <div class="input-group col-md-12">
-                    <select class="form-control select2" style="width: 100%;" name="designation" required>
-                          <option>Sports Director</option>
-                          <option>Sports Coordinator</option>
-                    </select>
-                    </div><!-- /.input group -->
-                </div><!-- /.form group -->
-                <div class="form-group">
-              <label for="date">Campus</label>
-               
-                <select class="form-control select2" name="campus" required>
-                <?php
-                   $query2=mysqli_query($con,"select * from campus order by campus")or die(mysqli_error($con));
-                      while($row=mysqli_fetch_array($query2)){
-                  
-                ?>
-                    <option value="<?php echo $row['campus_id'];?>"><?php echo $row['campus'];?></option>
-                  <?php }?>
-                </select>
-              </div><!-- /.form group -->
-                  <div class="form-group">
-                    <div class="input-group">
-                      <button class="btn btn-info btn-lg" id="daterange-btn" name="">
-                        Save
-                      </button>
-                       <button class="btn btn-lg" id="daterange-btn" type="reset">
-                        Clear
-                      </button>
-                    </div>
-                  </div><!-- /.form group -->
-        </form> 
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-
-        </section>
+        
         <!-- right col -->
       </div>
       <!-- /.row (main row) -->

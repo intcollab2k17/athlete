@@ -7,6 +7,14 @@
   <title><?php include('title.php');?></title>
   <!-- Tell the browser to be responsive to screen width -->
   <?php include('head.php');?>
+  <style>
+  .dashboard-button{
+    color:white;
+  }
+  .dashboard-button:hover{
+    color:white;
+  }
+  </style>
 </head>
 <body class="hold-transition skin-green sidebar-mini">
 <div class="wrapper">
@@ -45,8 +53,9 @@
                   $count=$row1['count'];
 
 ?>      
-        <div class="col-lg-2 col-xs-6">
+      <div class="col-lg-2 col-xs-6">
           <!-- small box -->
+           <a href = "record_student.php?id=<?=$row['campus_id'];?>" class ="dashboard-button"> 
           <div class="small-box <?php echo $color[$i];?>">
             <div class="inner">
               <h3><?php echo $count;if ($count=="") echo "0";?> </h3>
@@ -56,7 +65,8 @@
             <div class="icon">
               <i class="ion ion-bag"></i>
             </div>
-            <a href="#" class="small-box-footer"><?php echo $row['campus'];?></a>
+            <a href="record_student.php?id=<?=$row['campus_id']?>" class="small-box-footer"><?php echo $row['campus'];?></a>
+           </a>
           </div>
         </div>
         <!-- ./col -->
@@ -96,9 +106,7 @@
 
               <div class="box-tools pull-right" data-toggle="tooltip" title="Status">
                 <div class="btn-group" data-toggle="btn-toggle">
-                  <button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i>
-                  </button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-square text-red"></i></button>
+                 
                 </div>
               </div>
             </div>

@@ -33,6 +33,102 @@
       <!-- Small boxes (Stat box) -->
       <!-- Main row -->
       <div class="row">
+      <section class="col-lg-3 connectedSortable">
+
+          <!-- solid sales graph -->
+          <div class="box box-success">
+                <div class="box-header">
+                  <h3 class="box-title">Member</h3>
+                </div>
+                <div class="box-body">
+                  <!-- Date range -->
+                  <form method="post" action="member_add.php" enctype="multipart/form-data">
+                  <div class="form-group">
+                    <label for="date">Last Name</label>
+                    <div class="input-group col-md-12">
+                      <input type="text" class="form-control pull-right" id="date" name="last" placeholder="Last Name" required>
+                    </div><!-- /.input group -->
+                  </div><!-- /.form group -->
+                  <div class="form-group">
+                    <label for="date">First Name</label>
+                    <div class="input-group col-md-12">
+                      <input type="text" class="form-control pull-right" id="date" name="first" placeholder="First Name" required>
+                    </div><!-- /.input group -->
+                  </div><!-- /.form group -->
+                  <div class="form-group">
+                    <label for="date">Course</label>
+                    <div class="input-group col-md-12">
+                        <select class="form-control select2" style="width: 100%;" name="course" required>
+                        <?php
+                          $query2=mysqli_query($con,"select * from course order by course")or die(mysqli_error());
+                              while($row2=mysqli_fetch_array($query2)){
+                        ?>
+                              <option value="<?php echo $row2['course'];?>"><?php echo $row2['course_title'];?></option>
+                        <?php }?>
+                        </select>
+                    </div><!-- /.input group -->
+                </div><!-- /.form group -->
+                <div class="form-group">
+                    <label for="date">Year and Section</label>
+                    <div class="input-group col-md-12">
+                      <input type="text" class="form-control pull-right" id="date" name="ys" placeholder="Year and Section" required>
+                    </div><!-- /.input group -->
+                  </div><!-- /.form group -->
+                <div class="form-group">
+                  <label class="control-label" for="date">Gender</label>
+                  <div class="input-group col-md-12">
+                      <select class="form-control select2" style="width: 100%;" name="gender" required>
+                            <option>Male</option>
+                            <option>Female</option>
+                      </select>
+                  </div><!-- /.input group -->
+              </div><!-- /.form group -->
+              <div class="form-group">
+                    <label for="date">Address</label>
+                    <div class="input-group col-md-12">
+                      <textarea class="form-control pull-right" id="date" name="address" placeholder="Complete Address" required></textarea>
+                    </div><!-- /.input group -->
+              </div><!-- /.form group -->
+
+                  <div class="form-group">
+                    <label for="date">Member Type</label>
+                    <div class="input-group col-md-12">
+                      <select class="form-control select2" style="width: 100%;" name="type" required>
+                        <option>Student</option>
+                        <option>Faculty</option>
+                        <option>Staff</option>
+                    </select>
+                    </div><!-- /.input group -->
+                  </div><!-- /.form group -->
+                   <div class="form-group">
+                    <label for="date">Campus</label>
+                    <div class="input-group col-md-12">
+                      <select class="form-control select2" style="width: 100%;" name="campus" required>
+                        <?php
+                          $query2=mysqli_query($con,"select * from campus")or die(mysqli_error());
+                              while($row2=mysqli_fetch_array($query2)){
+                        ?>
+                              <option value="<?php echo $row2['campus_id'];?>"><?php echo $row2['campus'];?></option>
+                        <?php }?>
+                        </select>
+                    </div><!-- /.input group -->
+                  </div><!-- /.form group -->
+                  
+                  <div class="form-group">
+                    <div class="input-group">
+                      <button class="btn btn-info" id="daterange-btn" name="">
+                        Save
+                      </button>
+                       <button class="btn" id="daterange-btn" type="reset">
+                        Clear
+                      </button>
+                    </div>
+                  </div><!-- /.form group -->
+        </form> 
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
+        </section>
         <!-- Left col -->
         <section class="col-lg-9 connectedSortable">
           <!-- Custom tabs (Charts with tabs)-->
@@ -186,102 +282,7 @@
         </section>
         <!-- /.Left col -->
         <!-- right col (We are only adding the ID to make the widgets sortable)-->
-        <section class="col-lg-3 connectedSortable">
-
-          <!-- solid sales graph -->
-          <div class="box box-success">
-                <div class="box-header">
-                  <h3 class="box-title">Member</h3>
-                </div>
-                <div class="box-body">
-                  <!-- Date range -->
-                  <form method="post" action="member_add.php" enctype="multipart/form-data">
-                  <div class="form-group">
-                    <label for="date">Last Name</label>
-                    <div class="input-group col-md-12">
-                      <input type="text" class="form-control pull-right" id="date" name="last" placeholder="Last Name" required>
-                    </div><!-- /.input group -->
-                  </div><!-- /.form group -->
-                  <div class="form-group">
-                    <label for="date">First Name</label>
-                    <div class="input-group col-md-12">
-                      <input type="text" class="form-control pull-right" id="date" name="first" placeholder="First Name" required>
-                    </div><!-- /.input group -->
-                  </div><!-- /.form group -->
-                  <div class="form-group">
-                    <label for="date">Course</label>
-                    <div class="input-group col-md-12">
-                        <select class="form-control select2" style="width: 100%;" name="course" required>
-                        <?php
-                          $query2=mysqli_query($con,"select * from course order by course")or die(mysqli_error());
-                              while($row2=mysqli_fetch_array($query2)){
-                        ?>
-                              <option value="<?php echo $row2['course'];?>"><?php echo $row2['course_title'];?></option>
-                        <?php }?>
-                        </select>
-                    </div><!-- /.input group -->
-                </div><!-- /.form group -->
-                <div class="form-group">
-                    <label for="date">Year and Section</label>
-                    <div class="input-group col-md-12">
-                      <input type="text" class="form-control pull-right" id="date" name="ys" placeholder="Year and Section" required>
-                    </div><!-- /.input group -->
-                  </div><!-- /.form group -->
-                <div class="form-group">
-                  <label class="control-label" for="date">Gender</label>
-                  <div class="input-group col-md-12">
-                      <select class="form-control select2" style="width: 100%;" name="gender" required>
-                            <option>Male</option>
-                            <option>Female</option>
-                      </select>
-                  </div><!-- /.input group -->
-              </div><!-- /.form group -->
-              <div class="form-group">
-                    <label for="date">Address</label>
-                    <div class="input-group col-md-12">
-                      <textarea class="form-control pull-right" id="date" name="address" placeholder="Complete Address" required></textarea>
-                    </div><!-- /.input group -->
-              </div><!-- /.form group -->
-
-                  <div class="form-group">
-                    <label for="date">Member Type</label>
-                    <div class="input-group col-md-12">
-                      <select class="form-control select2" style="width: 100%;" name="type" required>
-                        <option>Student</option>
-                        <option>Faculty</option>
-                        <option>Staff</option>
-                    </select>
-                    </div><!-- /.input group -->
-                  </div><!-- /.form group -->
-                   <div class="form-group">
-                    <label for="date">Campus</label>
-                    <div class="input-group col-md-12">
-                      <select class="form-control select2" style="width: 100%;" name="campus" required>
-                        <?php
-                          $query2=mysqli_query($con,"select * from campus")or die(mysqli_error());
-                              while($row2=mysqli_fetch_array($query2)){
-                        ?>
-                              <option value="<?php echo $row2['campus_id'];?>"><?php echo $row2['campus'];?></option>
-                        <?php }?>
-                        </select>
-                    </div><!-- /.input group -->
-                  </div><!-- /.form group -->
-                  
-                  <div class="form-group">
-                    <div class="input-group">
-                      <button class="btn btn-info" id="daterange-btn" name="">
-                        Save
-                      </button>
-                       <button class="btn" id="daterange-btn" type="reset">
-                        Clear
-                      </button>
-                    </div>
-                  </div><!-- /.form group -->
-        </form> 
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-
-        </section>
+        
         <!-- right col -->
       </div>
       <!-- /.row (main row) -->

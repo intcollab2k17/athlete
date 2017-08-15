@@ -33,6 +33,44 @@
       <!-- Small boxes (Stat box) -->
       <!-- Main row -->
       <div class="row">
+       <section class="col-lg-3 connectedSortable">
+
+          <!-- solid sales graph -->
+          <div class="box box-success">
+                <div class="box-header">
+                  <h3 class="box-title">Add New Event</h3>
+                </div>
+                <div class="box-body">
+                  <!-- Date range -->
+                  <form method="post" action="event_add.php" enctype="multipart/form-data">
+  
+                  <div class="form-group">
+                    <label for="date">Event Name</label>
+                    <div class="input-group col-md-12">
+                      <input type="text" class="form-control pull-right" id="date" name="event" placeholder="Event Name/Desc" required>
+                    </div><!-- /.input group -->
+                  </div><!-- /.form group -->
+                  <div class="form-group">
+                    <label for="date">Event Date</label>
+                    <div class="input-group col-md-12">
+                      <input type="date" class="form-control pull-right" id="date" name="date" placeholder="Event Date" required>
+                    </div><!-- /.input group -->
+                  </div><!-- /.form group -->
+                  <div class="form-group">
+                    <div class="input-group">
+                      <button class="btn btn-info" id="daterange-btn" name="">
+                        Save
+                      </button>
+            <button class="btn" id="daterange-btn">
+                        Clear
+                      </button>
+                    </div>
+                  </div><!-- /.form group -->
+        </form> 
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
+        </section>
         <!-- Left col -->
         <section class="col-lg-9 connectedSortable">
           <!-- Custom tabs (Charts with tabs)-->
@@ -115,44 +153,7 @@
         </section>
         <!-- /.Left col -->
         <!-- right col (We are only adding the ID to make the widgets sortable)-->
-        <section class="col-lg-3 connectedSortable">
-
-          <!-- solid sales graph -->
-          <div class="box box-success">
-                <div class="box-header">
-                  <h3 class="box-title">Add New Event</h3>
-                </div>
-                <div class="box-body">
-                  <!-- Date range -->
-                  <form method="post" action="event_add.php" enctype="multipart/form-data">
-  
-                  <div class="form-group">
-                    <label for="date">Event Name</label>
-                    <div class="input-group col-md-12">
-                      <input type="text" class="form-control pull-right" id="date" name="event" placeholder="Event Name/Desc" required>
-                    </div><!-- /.input group -->
-                  </div><!-- /.form group -->
-                  <div class="form-group">
-                    <label for="date">Event Date</label>
-                    <div class="input-group col-md-12">
-                      <input type="date" class="form-control pull-right" id="date" name="date" placeholder="Event Date" required>
-                    </div><!-- /.input group -->
-                  </div><!-- /.form group -->
-                  <div class="form-group">
-                    <div class="input-group">
-                      <button class="btn btn-info" id="daterange-btn" name="">
-                        Save
-                      </button>
-            <button class="btn" id="daterange-btn">
-                        Clear
-                      </button>
-                    </div>
-                  </div><!-- /.form group -->
-        </form> 
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-
-        </section>
+       
         <!-- right col -->
       </div>
       <!-- /.row (main row) -->

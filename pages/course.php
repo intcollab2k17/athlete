@@ -27,6 +27,45 @@
         <li class="active">Members</li>
       </ol>
     </section>
+    <section class="col-lg-3 connectedSortable">
+
+          <!-- solid sales graph -->
+          <div class="box box-success">
+                <div class="box-header">
+                  <h3 class="box-title">Add New Course</h3>
+                </div>
+                <div class="box-body">
+                  <!-- Date range -->
+                  <form method="post" action="course_add.php" enctype="multipart/form-data">
+  
+                  <div class="form-group">
+                    <label for="date">Course Code</label>
+                    <div class="input-group col-md-12">
+                      <input type="text" class="form-control pull-right" id="date" name="course" placeholder="Course Code" required>
+                    </div><!-- /.input group -->
+                  </div><!-- /.form group -->
+                   <div class="form-group">
+                    <label for="date">Course Title</label>
+                    <div class="input-group col-md-12">
+                      <input type="text" class="form-control pull-right" id="date" name="title" placeholder="Course Title" required>
+                    </div><!-- /.input group -->
+                  </div><!-- /.form group -->
+      
+                  <div class="form-group">
+                    <div class="input-group">
+                      <button class="btn btn-primary" id="daterange-btn" name="">
+                        Save
+                      </button>
+            <button class="btn" id="daterange-btn" type="reset">
+                        Clear
+                      </button>
+                    </div>
+                  </div><!-- /.form group -->
+        </form> 
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
+        </section>
 
     <!-- Main content -->
     <section class="content">
@@ -114,45 +153,7 @@
         </section>
         <!-- /.Left col -->
         <!-- right col (We are only adding the ID to make the widgets sortable)-->
-        <section class="col-lg-3 connectedSortable">
-
-          <!-- solid sales graph -->
-          <div class="box box-success">
-                <div class="box-header">
-                  <h3 class="box-title">Add New Course</h3>
-                </div>
-                <div class="box-body">
-                  <!-- Date range -->
-                  <form method="post" action="course_add.php" enctype="multipart/form-data">
-  
-                  <div class="form-group">
-                    <label for="date">Course Code</label>
-                    <div class="input-group col-md-12">
-                      <input type="text" class="form-control pull-right" id="date" name="course" placeholder="Course Code" required>
-                    </div><!-- /.input group -->
-                  </div><!-- /.form group -->
-                   <div class="form-group">
-                    <label for="date">Course Title</label>
-                    <div class="input-group col-md-12">
-                      <input type="text" class="form-control pull-right" id="date" name="title" placeholder="Course Title" required>
-                    </div><!-- /.input group -->
-                  </div><!-- /.form group -->
-      
-                  <div class="form-group">
-                    <div class="input-group">
-                      <button class="btn btn-primary" id="daterange-btn" name="">
-                        Save
-                      </button>
-            <button class="btn" id="daterange-btn" type="reset">
-                        Clear
-                      </button>
-                    </div>
-                  </div><!-- /.form group -->
-        </form> 
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-
-        </section>
+        
         <!-- right col -->
       </div>
       <!-- /.row (main row) -->

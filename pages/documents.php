@@ -34,6 +34,85 @@
       <!-- Main row -->
       <div class="row">
         <!-- Left col -->
+        <section class="col-lg-3 connectedSortable">
+
+          <!-- solid sales graph -->
+          <div class="box box-success">
+                <div class="box-header">
+                  <h3 class="box-title">Communication/Letter</h3>
+                </div>
+                <div class="box-body">
+                  <!-- Date range -->
+                  <form method="post" action="document_add.php" enctype="multipart/form-data">
+                  <div class="form-group">
+                    <label for="date">Sender Name</label>
+                    <div class="input-group col-md-12">
+                      <input type="text" class="form-control pull-right" id="date" name="sender" placeholder="Sender Name" required>
+                    </div><!-- /.input group -->
+                  </div><!-- /.form group -->
+                  <div class="form-group">
+                    <label for="date">Receiver Name</label>
+                    <div class="input-group col-md-12">
+                      <input type="text" class="form-control pull-right" id="date" name="receiver" placeholder="Receiver Name" required>
+                    </div><!-- /.input group -->
+                  </div><!-- /.form group -->
+                  <div class="form-group">
+                    <label for="date">Title</label>
+                    <div class="input-group col-md-12">
+                      <input type="text" class="form-control pull-right" id="date" name="title" placeholder="Title" required>
+                    </div><!-- /.input group -->
+                  </div><!-- /.form group -->
+                  <div class="form-group">
+                    <label for="date">Description</label>
+                    <div class="input-group col-md-12">
+                      <textarea class="form-control pull-right" id="date" name="desc" placeholder="Description"></textarea>
+                    </div><!-- /.input group -->
+                  </div><!-- /.form group -->
+                  <div class="form-group">
+                    <label for="date">Category</label>
+                    <div class="input-group col-md-12">
+                      <select class="form-control select2" style="width: 100%;" name="category" required>
+                        <?php
+                          $query2=mysqli_query($con,"select * from category order by category_name")or die(mysqli_error($con));
+                              while($row2=mysqli_fetch_array($query2)){
+                        ?>
+                              <option><?php echo $row2['category_name'];?></option>
+                        <?php }?>
+                        </select>
+                    </div><!-- /.input group -->
+                  </div><!-- /.form group -->
+                  <div class="form-group">
+                      <label for="date">Type</label>
+                      <div class="input-group col-md-12">
+                          <select class="form-control" style="width: 100%;" name="type" required>
+                               <option>Incoming</option>
+                               <option>Outgoing</option>
+                          </select>
+                      </div><!-- /.input group -->
+                  </div><!-- /.form group -->
+                  <div class="form-group">
+                    <label for="date">File</label>
+                    <div class="input-group col-md-12">
+                        <input type="file" class="form-control pull-right" id="date" name="image">
+                    </div><!-- /.input group -->
+                </div><!-- /.form group -->
+                
+                  
+                  <div class="form-group">
+                    <div class="input-group">
+                      <button class="btn btn-info btn-lg" id="daterange-btn" name="">
+                        Save
+                      </button>
+                       <button class="btn btn-lg" id="daterange-btn" type="reset">
+                        Clear
+                      </button>
+                    </div>
+                  </div><!-- /.form group -->
+        </form> 
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
+        </section>
         <section class="col-lg-9 connectedSortable">
           <!-- Custom tabs (Charts with tabs)-->
           <div class="box box-success">
@@ -200,85 +279,7 @@
         </section>
         <!-- /.Left col -->
         <!-- right col (We are only adding the ID to make the widgets sortable)-->
-        <section class="col-lg-3 connectedSortable">
-
-          <!-- solid sales graph -->
-          <div class="box box-success">
-                <div class="box-header">
-                  <h3 class="box-title">Communication/Letter</h3>
-                </div>
-                <div class="box-body">
-                  <!-- Date range -->
-                  <form method="post" action="document_add.php" enctype="multipart/form-data">
-                  <div class="form-group">
-                    <label for="date">Sender Name</label>
-                    <div class="input-group col-md-12">
-                      <input type="text" class="form-control pull-right" id="date" name="sender" placeholder="Sender Name" required>
-                    </div><!-- /.input group -->
-                  </div><!-- /.form group -->
-                  <div class="form-group">
-                    <label for="date">Receiver Name</label>
-                    <div class="input-group col-md-12">
-                      <input type="text" class="form-control pull-right" id="date" name="receiver" placeholder="Receiver Name" required>
-                    </div><!-- /.input group -->
-                  </div><!-- /.form group -->
-                  <div class="form-group">
-                    <label for="date">Title</label>
-                    <div class="input-group col-md-12">
-                      <input type="text" class="form-control pull-right" id="date" name="title" placeholder="Title" required>
-                    </div><!-- /.input group -->
-                  </div><!-- /.form group -->
-                  <div class="form-group">
-                    <label for="date">Description</label>
-                    <div class="input-group col-md-12">
-                      <textarea class="form-control pull-right" id="date" name="desc" placeholder="Description"></textarea>
-                    </div><!-- /.input group -->
-                  </div><!-- /.form group -->
-                  <div class="form-group">
-                    <label for="date">Category</label>
-                    <div class="input-group col-md-12">
-                      <select class="form-control select2" style="width: 100%;" name="category" required>
-                        <?php
-                          $query2=mysqli_query($con,"select * from category order by category_name")or die(mysqli_error($con));
-                              while($row2=mysqli_fetch_array($query2)){
-                        ?>
-                              <option><?php echo $row2['category_name'];?></option>
-                        <?php }?>
-                        </select>
-                    </div><!-- /.input group -->
-                  </div><!-- /.form group -->
-                  <div class="form-group">
-                      <label for="date">Type</label>
-                      <div class="input-group col-md-12">
-                          <select class="form-control" style="width: 100%;" name="type" required>
-                               <option>Incoming</option>
-                               <option>Outgoing</option>
-                          </select>
-                      </div><!-- /.input group -->
-                  </div><!-- /.form group -->
-                  <div class="form-group">
-                    <label for="date">File</label>
-                    <div class="input-group col-md-12">
-                        <input type="file" class="form-control pull-right" id="date" name="image">
-                    </div><!-- /.input group -->
-                </div><!-- /.form group -->
-                
-                  
-                  <div class="form-group">
-                    <div class="input-group">
-                      <button class="btn btn-info btn-lg" id="daterange-btn" name="">
-                        Save
-                      </button>
-                       <button class="btn btn-lg" id="daterange-btn" type="reset">
-                        Clear
-                      </button>
-                    </div>
-                  </div><!-- /.form group -->
-        </form> 
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-
-        </section>
+        
         <!-- right col -->
       </div>
       <!-- /.row (main row) -->
