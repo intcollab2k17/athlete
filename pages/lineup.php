@@ -56,7 +56,7 @@
                       <tr>
                         <th>Athlete Last Name</th>
                         <th>Athlete First Name</th>
-                        <th>T-Shirt</th>
+                        <th>Uniform</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -114,7 +114,7 @@
                       <tr>
                         <th>Athlete Last Name</th>
                         <th>Athlete First Name</th>
-                        <th>T-Shirt</th>
+                        <th>Uniform</th>
                         <th>Action</th>
                       </tr>           
                     </tfoot>

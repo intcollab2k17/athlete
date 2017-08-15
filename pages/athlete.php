@@ -60,7 +60,14 @@
                     <form method="post" action="forward.php">
 <?php
     
-    $query=mysqli_query($con,"select *,athlete.member_id as member from athlete natural join member left join sports on athlete.sports_id=sports.sports_id")or die(mysqli_error($con));
+    $query=mysqli_query($con,"select * from settings where status='active'")or die(mysqli_error($con));
+        $row=mysqli_fetch_array($query);
+          $sid=$row['settings_id'];
+          $status=$row['status'];
+?>
+<?php
+    
+    $query=mysqli_query($con,"select * from athlete natural join member natural join sports natural join event where settings_id='$sid' and event_status='active'")or die(mysqli_error($con));
         while($row=mysqli_fetch_array($query)){
           $aid=$row['athlete_id'];
           $mid=$row['member_id'];

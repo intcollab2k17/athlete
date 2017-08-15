@@ -26,7 +26,7 @@
 ?>     
     <section class="content-header">
       <h1>
-        T-Shirt Distribution
+        Uniform Distribution
         <small><button class="btn btn-info" onclick="window.print();"><i class="glyphicon glyphicon-print"></i> Print </button></small>
       </h1>
       <ol class="breadcrumb">

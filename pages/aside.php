@@ -2,6 +2,15 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- sidebar menu: : style can be found in sidebar.less -->
+      <form action="result.php" method="post" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="name" class="form-control" placeholder="Search...">
+          <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
+      </form>
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active treeview">
@@ -55,8 +64,9 @@
             <li><a href="coach.php"><i class="fa fa-circle-o"></i> Coaches</a></li>
             <li><a href="inventory.php"><i class="fa fa-circle-o"></i> Inventory</a></li>
             <li><a href="lineup_report.php"><i class="fa fa-circle-o"></i> Lineups</a></li>
-            <li><a href="statistics.php"><i class="fa fa-circle-o"></i> Statistics</a></li>
-            <li><a href="tshirt.php"><i class="fa fa-circle-o"></i> T-Shirt</a></li>
+            <li><a href="statistics.php"><i class="fa fa-circle-o"></i> Statistics Per Course</a></li>
+            <li><a href="statistic_sports.php"><i class="fa fa-circle-o"></i> Statistics Per Sports </a></li>
+            <li><a href="tshirt.php"><i class="fa fa-circle-o"></i> Uniform </a></li>
           </ul>
         </li>
         <li class="treeview">
