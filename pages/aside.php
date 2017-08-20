@@ -48,6 +48,7 @@
           <ul class="treeview-menu">
             <li><a href="athlete.php"><i class="fa fa-circle-o"></i> Athlete </a></li>
             <li><a href="borrow.php"><i class="fa fa-circle-o"></i> Borrow</a></li>
+            <li><a href="return.php"><i class="fa fa-circle-o"></i> Return</a></li>
             <li><a href="coach.php"><i class="fa fa-circle-o"></i> Coach </a></li>
             <li><a href="documents.php"><i class="fa fa-circle-o"></i> Documents</a></li>
           </ul>
