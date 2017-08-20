@@ -68,7 +68,7 @@
                           <ol>
 <?php
     
-    $query2=mysqli_query($con,"select * from athlete natural join member where settings_id='$settings' and sports_id='$sport' and campus_id='$cid'")or die(mysqli_error($con));
+    $query2=mysqli_query($con,"select * from athlete natural join member natural join event where settings_id='$settings' and sports_id='$sport' and campus_id='$cid' and event_status='active'")or die(mysqli_error($con));
         while($row2=mysqli_fetch_array($query2)){
 ?>
                             <li><?php echo $row2['member_last'].", ".$row2['member_first'];?> - <?php 

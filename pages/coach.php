@@ -120,7 +120,7 @@
                     <tbody>
 <?php
     
-    $query=mysqli_query($con,"select * from coach natural join member natural join sports natural join event where settings_id='$settings' order by sports_name")or die(mysqli_error($con));
+    $query=mysqli_query($con,"select * from coach natural join member natural join sports natural join event where settings_id='$settings' and event_status='active' order by sports_name")or die(mysqli_error($con));
         while($row=mysqli_fetch_array($query)){
     
 ?>

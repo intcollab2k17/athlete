@@ -56,7 +56,7 @@
       
   
     
-$result = mysqli_query($con,"SELECT course,COUNT(*) FROM athlete natural join member natural join settings where campus_id='1' group by course");
+$result = mysqli_query($con,"SELECT course,COUNT(*) FROM athlete natural join member natural join settings natural join event where campus_id='1' and event_status='active' group by course");
     while($r = mysqli_fetch_array($result)) {
   
   ?>
@@ -96,7 +96,7 @@ $result = mysqli_query($con,"SELECT course,COUNT(*) FROM athlete natural join me
       
   
     
-$result = mysqli_query($con,"SELECT course,COUNT(*) FROM athlete natural join member natural join settings where campus_id='2' group by course");
+$result = mysqli_query($con,"SELECT course,COUNT(*) FROM athlete natural join member natural join settings natural join event where campus_id='2' and event_status='active' group by course");
     while($r = mysqli_fetch_array($result)) {
   
   ?>
@@ -136,7 +136,7 @@ $result = mysqli_query($con,"SELECT course,COUNT(*) FROM athlete natural join me
       
   
     
-$result = mysqli_query($con,"SELECT course,COUNT(*) FROM athlete natural join member natural join settings where campus_id='3' group by course");
+$result = mysqli_query($con,"SELECT course,COUNT(*) FROM athlete natural join member natural join settings natural join event where campus_id='3' and event_status='active' group by course");
     while($r = mysqli_fetch_array($result)) {
   
   ?>
@@ -176,7 +176,7 @@ $result = mysqli_query($con,"SELECT course,COUNT(*) FROM athlete natural join me
       
   
     
-$result = mysqli_query($con,"SELECT course,COUNT(*) FROM athlete natural join member natural join settings where campus_id='4' group by course");
+$result = mysqli_query($con,"SELECT course,COUNT(*) FROM athlete natural join member natural join settings natural join event where campus_id='4' and event_status='active' group by course");
     while($r = mysqli_fetch_array($result)) {
   
   ?>
