@@ -143,7 +143,6 @@
                       <tr>
                         <th>Last Name</th>
                         <th>First Name</th>
-                        <th>Gender</th>
                         <th>Course</th>
                         <th>Year & Section</th>
                         <th>Address</th>
@@ -163,7 +162,6 @@
                       <tr>
                         <td><?php echo $row['member_last'];?></td>
                         <td><?php echo $row['member_first'];?></td>
-                        <td><?php echo $row['gender'];?></td>
                         <td><?php echo $row['course'];?></td>
                         <td><?php echo $row['ys'];?></td>
                         <td><?php echo $row['address'];?></td>
@@ -265,7 +263,6 @@
                       <tr>
                         <th>Last Name</th>
                         <th>First Name</th>
-                        <th>Gender</th>
                         <th>Course</th>
                         <th>Year & Section</th>
                         <th>Address</th>
@@ -297,5 +294,18 @@
 <!-- ./wrapper -->
 
 <?php include('script.php');?>
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
 </body>
 </html>
