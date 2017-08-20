@@ -26,6 +26,7 @@
         $query=mysqli_query($con,"select * from coach natural join sports natural join member where sports_name='$sports' and campus_id='$campus'")or die(mysqli_error($con));
             $row=mysqli_fetch_array($query);
               $cid=$row['coach_id'];
+              $sports_id=$row['sports_id'];
               echo $row['member_last'].", ".$row['member_first'];
     ?>
       </h1>
@@ -259,13 +260,13 @@
           <!-- solid sales graph -->
           <div class="box box-success">
                 <div class="box-header">
-                  <h3 class="box-title">Athlete</h3>
+                  <h3 class="box-title">Athlete <a href="#add" data-target="#add" data-toggle="modal" style="color:#fff;" class="small-box-footer"><i class="glyphicon glyphicon-plus text-blue"></i> Add New</a></h3>
                 </div>
                 <div class="box-body">
                   <!-- Date range -->
                   <form method="post" action="athlete_add.php" enctype="multipart/form-data">
                   <div class="form-group">
-                    <label for="date">Athlete Name</label>
+                    <label for="date">Athlete Name </label>
                     <div class="input-group col-md-12">
                       <select class="form-control select2" style="width: 100%;" name="name" required>
                         <?php
@@ -340,3 +341,76 @@
 <?php include('script.php');?>
 </body>
 </html>
+<div id="add" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content" style="height:auto">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Add New Member</h4>
+              </div>
+              <div class="modal-body">
+        <form class="form-horizontal" method="post" action="member_add1.php" enctype='multipart/form-data'>
+                
+        <div class="form-group">
+          <label class="control-label col-lg-3" for="name">Last Name</label>
+          <div class="col-lg-9"><input type="hidden" class="form-control" id="id" name="id" required>  
+            <input type="text" class="form-control" id="name" name="last" required>  
+          </div>
+        </div> 
+        <div class="form-group">
+          <label class="control-label col-lg-3" for="file">First Name</label>
+          <div class="col-lg-9">
+            <input type="text" class="form-control" id="name" name="first" required>  
+          </div>
+        </div> 
+        <div class="form-group">
+            <label class="control-label col-lg-3" for="date">Course</label>
+            <div class="col-md-9">
+                <select class="form-control select2" style="width: 100%;" name="course" required>
+                <?php
+                  $query2=mysqli_query($con,"select * from course order by course")or die(mysqli_error($con));
+                      while($row2=mysqli_fetch_array($query2)){
+                ?>
+                      
+                      <option value="<?php echo $row2['course'];?>"><?php echo $row2['course_title'];?></option>
+                <?php }?>
+                </select>
+            </div><!-- /.input group -->
+        </div><!-- /.form group -->
+        <div class="form-group">
+          <label class="control-label col-lg-3" for="file">Year & Section</label>
+          <div class="col-lg-9">
+            <input type="text" class="form-control" id="name" name="ys" required>  
+          </div>
+        </div> 
+        <div class="form-group">
+            <label class="control-label col-lg-3" for="date">Gender</label>
+            <div class="col-md-9">
+                <select class="form-control select2" style="width: 100%;" name="gender" required>
+                      <option>Male</option>
+                      <option>Female</option>
+                </select>
+            </div><!-- /.input group -->
+        </div><!-- /.form group -->
+        <div class="form-group">
+          <label class="control-label col-lg-3" for="file">Address</label>
+          <div class="col-lg-9">
+            <textarea class="form-control" id="name" name="address"></textarea>
+          </div>
+        </div> 
+        <input type="hidden" name="sports" value="<?php echo $sports;?>">
+        <input type="hidden" name="sports_id" value="<?php echo $sports_id;?>">
+        <input type="hidden" name="coach" value="<?php echo $cid;?>">
+        <input type="hidden" name="event" value="<?php echo $event_id;?>">
+              </div><br><br><br><hr>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+        </form>
+        </div>
+      
+        </div><!--end of modal-dialog-->
+ </div>
+ <!--end of modal-->                    
