@@ -48,7 +48,6 @@
           <ul class="treeview-menu">
             <li><a href="athlete.php"><i class="fa fa-circle-o"></i> Athlete </a></li>
             <li><a href="borrow.php"><i class="fa fa-circle-o"></i> Borrow</a></li>
-            <li><a href="return.php"><i class="fa fa-circle-o"></i> Return</a></li>
             <li><a href="coach.php"><i class="fa fa-circle-o"></i> Coach </a></li>
             <li><a href="documents.php"><i class="fa fa-circle-o"></i> Documents</a></li>
           </ul>
@@ -62,9 +61,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="coach.php"><i class="fa fa-circle-o"></i> Coaches</a></li>
+            <li><a href="coach_report.php"><i class="fa fa-circle-o"></i> Coaches</a></li>
             <li><a href="inventory.php"><i class="fa fa-circle-o"></i> Inventory</a></li>
             <li><a href="lineup_report.php"><i class="fa fa-circle-o"></i> Lineups</a></li>
+            <li><a href="return.php"><i class="fa fa-circle-o"></i> Return</a></li>
             <li><a href="statistics.php"><i class="fa fa-circle-o"></i> Statistics Per Course</a></li>
             <li><a href="statistic_sports.php"><i class="fa fa-circle-o"></i> Statistics Per Sports </a></li>
             <li><a href="tshirt.php"><i class="fa fa-circle-o"></i> Uniform </a></li>
@@ -81,11 +81,11 @@
           <ul class="treeview-menu">
 <?php
     
-    $query=mysqli_query($con,"select * from settings where status<>'active' order by sy,sem desc")or die(mysqli_error($con));
+    $query=mysqli_query($con,"select * from event where event_status<>'active' order by event_date desc")or die(mysqli_error($con));
         while($row=mysqli_fetch_array($query)){
-          $sid=$row['settings_id'];
+          $sid=$row['event_id'];
 ?>          
-            <li><a href="archive.php?sid=<?php echo $sid;?>"><i class="fa fa-circle-o"></i> <?php echo $row['sem']." ".$row['sy'];?></a></li>
+            <li><a href="archive.php?event_id=<?php echo $sid;?>"><i class="fa fa-circle-o"></i> <?php echo $row['event_name'];?></a></li>
 <?php }?>          
           </ul>
         </li>

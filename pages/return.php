@@ -35,50 +35,8 @@
       <div class="row">
         <!-- Left col -->
         
-        <!-- /.Left col -->
-        <!-- right col (We are only adding the ID to make the widgets sortable)-->
-        <section class="col-lg-3 connectedSortable">
-
-          <!-- solid sales graph -->
-          <div class="box box-success">
-                <div class="box-header">
-                  <h3 class="box-title">Borrower's Name</h3>
-                </div>
-                <div class="box-body">
-                  <!-- Date range -->
-                  <form method="post" action="">
-                    <div class="row" style="min-height:400px">
-          
-                       <div class="col-md-12">
-                          <div class="form-group">
-                            <label for="date">Borrower's Name</label>
-                            <select class="form-control select2" name="borrower" tabindex="1" autofocus required>
-                            <?php
-                              include('../dist/includes/dbcon.php');
-                               $query2=mysqli_query($con,"select * from member order by member_last,member_first")or die(mysqli_error());
-                                  while($row=mysqli_fetch_array($query2)){
-                            ?>
-                                <option value="<?php echo $row['member_id'];?>"><?php echo $row['member_last'].", ".$row['member_first'];?></option>
-                              <?php }?>
-                            </select>
-                          </div><!-- /.form group -->
-                      </div>
-
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label for="date"></label>
-                          <div class="input-group">
-                            <button class="btn btn-lg btn-block btn-info" type="submit" tabindex="3" name="addtocart">Find</button>
-                          </div>
-                        </div>  
-                      </div>
-                  </div>
-              </form> 
-            </div>
-
-        </section>
         <!-- right col -->
-        <section class="col-lg-9 connectedSortable">
+        <section class="col-lg-12 connectedSortable">
           <!-- Custom tabs (Charts with tabs)-->
           <div class="box box-success">
                 <div class="box-header">
@@ -93,38 +51,22 @@
                         <th>Qty</th>
                         <th>Borrowed Date</th>
                         <th>Returned Date</th>
-                        <th>Status</th>
-                        <th>Return</th>
                       </tr>
                     </thead>
                     <tbody>
 <?php
     
-    $query=mysqli_query($con,"select * from borrow natural join equipment order by date_borrowed")or die(mysqli_error($con));
+    $query=mysqli_query($con,"select * from borrow natural join equipment where status='1' order by date_borrowed")or die(mysqli_error($con));
         while($row=mysqli_fetch_array($query)){
             $id=$row['borrow_id'];
     
-            if($row['status']==1) {
-              $status="returned";
-              $badge="green";
-            }
-            else 
-              {
-                $status= "unreturned";
-                $badge="red";
-              }
+            
 ?>
                     <tr>
                         <td class="record"><?php echo $row['equipment_name'];?></td>
                         <td><?php echo $row['borrow_qty'];?></td>
                         <td><?php echo date("M d Y h:i A", strtotime($row['date_borrowed']));?></td>
                         <td><?php echo date("M d Y h:i A", strtotime($row['date_returned']));?></td>
-                        <td><span class='badge bg-<?php echo $badge;?>'><?php echo $status; ?></span></td>
-                        <td>
-                          
-                          <a href="#delete<?php echo $row['borrow_id'];?>" data-target="#delete<?php echo $row['borrow_id'];?>" data-toggle="modal" style="color:#fff;" class="small-box-footer"><i class="glyphicon glyphicon-trash text-red"></i></a>
-                          
-                        </td>
                     </tr>
             
 <div id="delete<?php echo $row['borrow_id'];?>" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">

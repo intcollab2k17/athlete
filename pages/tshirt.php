@@ -42,6 +42,12 @@
       <div class="row">
         <!-- Left col -->
 <?php
+$query1=mysqli_query($con,"select * from event where event_status='active'")or die(mysqli_error($con));
+    $row1=mysqli_fetch_array($query1);
+
+?>                
+        <h2 style="text-align: center;">Uniform Distribution for <?php echo $row1['event_name'];?></h2>    
+<?php
     
     $query=mysqli_query($con,"select * from campus")or die(mysqli_error());
     while($row=mysqli_fetch_array($query)){

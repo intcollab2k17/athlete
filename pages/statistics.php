@@ -27,7 +27,11 @@
         <li class="active">Members</li>
       </ol>
     </section>
+<?php
+$query1=mysqli_query($con,"select * from event where event_status='active'")or die(mysqli_error($con));
+    $row1=mysqli_fetch_array($query1);
 
+?>        
     <!-- Main content -->
     <section class="content">
       <!-- Small boxes (Stat box) -->
@@ -37,7 +41,7 @@
         <section class="col-lg-12 connectedSortable">
           <!-- Custom tabs (Charts with tabs)-->
           <div class="box box-success">
-    
+                <h2 style="text-align: center;">Sports Lineup for <?php echo $row1['event_name'];?></h2>    
                 <div class="box-header">
                   <h3 class="box-title">Athlete Statistics by Course Talisay Campus</h3>
                 </div><!-- /.box-header -->

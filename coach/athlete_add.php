@@ -12,7 +12,7 @@ include('session.php');
     $row=mysqli_fetch_array($query);
     $settings=$row['settings_id'];  
 	
-			mysqli_query($con,"INSERT INTO athlete(member_id,sports_id,settings_id,event_id,coach_id) VALUES('$name','$sport','$settings','$event','$cid')")or die(mysqli_error($con));
+			mysqli_query($con,"INSERT INTO athlete(member_id,sports_id,settings_id,event_id,coach_id,member_statu) VALUES('$name','$sport','$settings','$event','$cid','1')")or die(mysqli_error($con));
 
 			echo "<script type='text/javascript'>alert('Successfully added new athlete!');</script>";
 			echo "<script>document.location='athlete.php?sports=$sports'</script>";  

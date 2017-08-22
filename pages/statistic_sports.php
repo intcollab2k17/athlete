@@ -37,7 +37,12 @@
         <section class="col-lg-12 connectedSortable">
           <!-- Custom tabs (Charts with tabs)-->
           <div class="box box-success">
-    
+                <?php
+$query1=mysqli_query($con,"select * from event where event_status='active'")or die(mysqli_error($con));
+    $row1=mysqli_fetch_array($query1);
+
+?>        
+                <h2 style="text-align: center;">Sports Lineup for <?php echo $row1['event_name'];?></h2>    
                 <div class="box-header">
                   <h3 class="box-title">Athlete Statistics by Sports Talisay Campus</h3>
                 </div><!-- /.box-header -->
