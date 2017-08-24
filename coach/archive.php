@@ -54,8 +54,8 @@
                     <tbody>
 <?php
     $campus_id=$_SESSION['campus'];
-    $sid=$_REQUEST['sid'];
-    $query=mysqli_query($con,"select * from coach natural join member natural join sports natural join event where campus_id='$campus_id' and settings_id='$sid' order by coach_id desc")or die(mysqli_error($con));
+    $sid=$_REQUEST['event_id'];
+    $query=mysqli_query($con,"select * from coach natural join member natural join sports natural join event where campus_id='$campus_id' and event_id='$sid' order by coach_id desc")or die(mysqli_error($con));
         while($row=mysqli_fetch_array($query)){
     
 ?>

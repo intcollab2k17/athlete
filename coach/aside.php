@@ -23,11 +23,11 @@
           <ul class="treeview-menu">
 <?php
     
-    $query=mysqli_query($con,"select * from settings where status<>'active' order by sy,sem desc")or die(mysqli_error($con));
+    $query=mysqli_query($con,"select * from event where event_status<>'active' order by event_date desc")or die(mysqli_error($con));
         while($row=mysqli_fetch_array($query)){
-          $sid=$row['settings_id'];
+          $sid=$row['event_id'];
 ?>          
-            <li><a href="archive.php?sid=<?php echo $sid;?>"><i class="fa fa-circle-o"></i> <?php echo $row['sem']." ".$row['sy'];?></a></li>
+            <li><a href="archive.php?event_id=<?php echo $sid;?>"><i class="fa fa-circle-o"></i> <?php echo $row['event_name'];?></a></li>
 <?php }?>          
           </ul>
         </li>
