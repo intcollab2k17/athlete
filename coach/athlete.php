@@ -24,7 +24,7 @@
         $sports=$_REQUEST['sports'];
         $campus=$_SESSION['campus'];
         
-        $query=mysqli_query($con,"select *,athlete.member_id as member from athlete natural join member left join sports on athlete.sports_id=sports.sports_id")or die(mysqli_error($con));
+        $query=mysqli_query($con,"select *,member_id as member from coach natural join member natural join sports where sports_name='$sports'")or die(mysqli_error($con));
             $row=mysqli_fetch_array($query);
               $cid=$row['coach_id'];
               
@@ -71,7 +71,7 @@
                     <form method="post" action="forward.php">
 <?php
     $cid=$_REQUEST['cid'];
-    
+
     $querye=mysqli_query($con,"select * from event where event_status='active'")or die(mysqli_error($con));
       $rowe=mysqli_fetch_array($querye);
       $event=$row['event_id'];
@@ -410,6 +410,7 @@
         <input type="hidden" name="sports_id" value="<?php echo $sports_id;?>">
         <input type="hidden" name="coach" value="<?php echo $cid;?>">
         <input type="hidden" name="event" value="<?php echo $event_id;?>">
+
               </div><br><br><br><hr>
               <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">Save changes</button>

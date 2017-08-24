@@ -65,7 +65,7 @@
                     
 <?php
     
-    $query=mysqli_query($con,"select *,athlete.member_id as member from athlete natural join member left join sports on athlete.sports_id=sports.sports_id")or die(mysqli_error($con));
+    $query=mysqli_query($con,"select * from athlete natural join member natural join sports where coach_id='$cid'")or die(mysqli_error($con));
         while($row=mysqli_fetch_array($query)){
           $aid=$row['athlete_id'];
     
