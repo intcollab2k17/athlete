@@ -23,10 +23,11 @@
         <?php
         $sports=$_REQUEST['sports'];
         $campus=$_SESSION['campus'];
+        
         $query=mysqli_query($con,"select *,athlete.member_id as member from athlete natural join member left join sports on athlete.sports_id=sports.sports_id")or die(mysqli_error($con));
             $row=mysqli_fetch_array($query);
               $cid=$row['coach_id'];
-              $sports_id=$row['sports_id'];
+              
               echo $row['member_last'].", ".$row['member_first'];
     ?>
       </h1>
@@ -69,7 +70,13 @@
                     <tbody>
                     <form method="post" action="forward.php">
 <?php
-    $query=mysqli_query($con,"select * from athlete natural join member natural join sports where sports_name='$sports' and campus_id='$campus'")or die(mysqli_error($con));
+    $cid=$_REQUEST['cid'];
+    
+    $querye=mysqli_query($con,"select * from event where event_status='active'")or die(mysqli_error($con));
+      $rowe=mysqli_fetch_array($querye);
+      $event=$row['event_id'];
+
+    $query=mysqli_query($con,"select * from athlete natural join member natural join sports where coach_id='$cid'")or die(mysqli_error($con));
         while($row=mysqli_fetch_array($query)){
           $aid=$row['athlete_id'];
     

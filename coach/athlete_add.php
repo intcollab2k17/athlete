@@ -19,7 +19,7 @@ include('session.php');
 	    if (($countsettings<1) or ($countevent<1))
 	    {
 			echo "<script type='text/javascript'>alert('School Year or Event are not yet set!');</script>";
-			echo "<script>document.location='athlete.php?sports=$sports'</script>";  	    	
+			echo "<script>document.location='athlete.php?sports=$sports&cid=$cid'</script>";  	    	
 	    }
 	    else
 	    {
@@ -30,7 +30,7 @@ include('session.php');
 	    	if ($row2>=1)
 	    	{
 				echo "<script type='text/javascript'>alert('Athlete already added to this event and sport!');</script>";
-				echo "<script>document.location='athlete.php?sports=$sports'</script>";  	    		
+				echo "<script>document.location='athlete.php?sports=$sports&cid=$cid'</script>";  	    		
 	    	}
 	    	else
 	    	{
@@ -38,7 +38,7 @@ include('session.php');
 			mysqli_query($con,"INSERT INTO athlete(member_id,sports_id,settings_id,event_id,coach_id) VALUES('$name','$sport','$settings','$event','$cid')")or die(mysqli_error($con));
 
 			echo "<script type='text/javascript'>alert('Successfully added new athlete!');</script>";
-			echo "<script>document.location='athlete.php?sports=$sports'</script>";  
+			echo "<script>document.location='athlete.php?sports=$sports&cid=$cid'</script>";  
 			}
 		}
 ?>

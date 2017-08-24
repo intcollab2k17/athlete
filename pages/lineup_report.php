@@ -49,7 +49,10 @@ $query1=mysqli_query($con,"select * from event where event_status='active'")or d
         <!-- Left col -->
         <h2 style="text-align: center;">Sports Lineup for <?php echo $row1['event_name'];?></h2>
 <?php
-    
+    $querye=mysqli_query($con,"select * from event where event_status='active'")or die(mysqli_error($con));
+      $rowe=mysqli_fetch_array($querye);
+      $event=$row['event_id'];
+
     $query=mysqli_query($con,"select * from campus")or die(mysqli_error());
     while($row=mysqli_fetch_array($query)){
       $cid=$row['campus_id'];
@@ -71,7 +74,7 @@ $query1=mysqli_query($con,"select * from event where event_status='active'")or d
         while($row1=mysqli_fetch_array($query1)){
           $sport=$row1['sports_id'];
 
-           $query2=mysqli_query($con,"select * from coach natural join member where sports_id='$sport' and settings_id='$settings' and campus_id='$cid'")or die(mysqli_error($con));
+           $query2=mysqli_query($con,"select * from coach natural join member where sports_id='$sport' and settings_id='$settings' and campus_id='$cid' and event_id='$event'")or die(mysqli_error($con));
             $row2=mysqli_fetch_array($query2);
 ?>    
                       <div class="col-md-3 col-lg-3 col-sm-3  ">

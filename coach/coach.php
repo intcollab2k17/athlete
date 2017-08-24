@@ -56,13 +56,14 @@
     $campus_id=$_SESSION['campus'];
     $query=mysqli_query($con,"select * from coach natural join member natural join sports natural join event where event_status='active' and campus_id='$campus_id' order by sports_name")or die(mysqli_error($con));
         while($row=mysqli_fetch_array($query)){
+          $cid=$row['coach_id'];
     
 ?>
                       <tr>
                         <td><?php echo $row['member_last'].", ".$row['member_first'];?></td>
                         <td><?php echo $row['sports_name'];?></td>
                         <td><?php echo $row['event_name'];?></td>
-                        <td><a href="athlete.php?sports=<?php echo $row['sports_name'];?>">View</a></td>
+                        <td><a href="athlete.php?cid=<?php echo $cid;?>&sports=<?php echo $row['sports_name'];?>">View</a></td>
                       </tr>
 
 <?php }?>           
