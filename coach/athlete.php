@@ -23,7 +23,7 @@
         <?php
         $sports=$_REQUEST['sports'];
         $campus=$_SESSION['campus'];
-        $query=mysqli_query($con,"select * from coach natural join sports natural join member where sports_name='$sports' and campus_id='$campus'")or die(mysqli_error($con));
+        $query=mysqli_query($con,"select *,athlete.member_id as member from athlete natural join member left join sports on athlete.sports_id=sports.sports_id")or die(mysqli_error($con));
             $row=mysqli_fetch_array($query);
               $cid=$row['coach_id'];
               $sports_id=$row['sports_id'];
