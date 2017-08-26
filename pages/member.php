@@ -141,11 +141,11 @@
                   <table id="example1" class="table table-bordered table-striped">
                     <thead>
                       <tr>
+                        <th>Photo</th>
                         <th>Last Name</th>
                         <th>First Name</th>
                         <th>Course</th>
                         <th>Year & Section</th>
-                        <th>Address</th>
                         <th>Member Type</th>
                         <th>Campus</th>
                         <th>Status</th>
@@ -160,11 +160,11 @@
     
 ?>
                       <tr>
+                        <td><img class="attachment-img" src="../dist/uploads/<?php echo $row['member_pic'];?>" alt="Image" style="width: 50px;height: 50px"></td>
                         <td><?php echo $row['member_last'];?></td>
                         <td><?php echo $row['member_first'];?></td>
                         <td><?php echo $row['course'];?></td>
                         <td><?php echo $row['ys'];?></td>
-                        <td><?php echo $row['address'];?></td>
                         <td><?php echo $row['member_type'];?></td>
                         <td><?php echo $row['campus'];?></td>
                         <td><?php if ($row['member_status']=='1')echo "Active"; else echo "Inactive";?></td>
@@ -265,7 +265,6 @@
                         <th>First Name</th>
                         <th>Course</th>
                         <th>Year & Section</th>
-                        <th>Address</th>
                         <th>Member Type</th>
                         <th>Campus</th>
                         <th>Status</th>

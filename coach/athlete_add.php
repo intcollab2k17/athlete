@@ -23,7 +23,7 @@ include('session.php');
 	    }
 	    else
 	    {
-		  $query2=mysqli_query($con,"select * from athlete where member_id='$name' and sports_id='$sport' and event_id='$event'")or die(mysqli_error($con));
+		  $query2=mysqli_query($con,"select * from athlete where member_id='$name' and sports_id='$sports' and event_id='$event'")or die(mysqli_error($con));
 		  	
 		  	$row2=mysqli_num_rows($query2);
 

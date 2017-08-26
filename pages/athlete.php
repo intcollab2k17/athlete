@@ -113,8 +113,9 @@
                   <table id="example1" class="table table-bordered table-striped">
                     <thead>
                       <tr>
-                        <th>Athlete Last Name</th>
-                        <th>Athlete First Name</th>
+                        <th>Photo</th>
+                        <th>Last Name</th>
+                        <th>First Name</th>
                         <th>Sport</th>
                         <th>Award/s</th>
                         <th>Action</th>
@@ -138,6 +139,7 @@
           $mid=$row['member_id'];
 ?>
                       <tr>
+                        <td><img class="attachment-img" src="../dist/uploads/<?php echo $row['member_pic'];?>" alt="Image" style="width: 50px;height: 50px"></td>
                         <td><?php echo $row['member_last'];?></td>
                         <td><?php echo $row['member_first'];?></td>
                         <td><?php echo $row['sports_name'];?></td>

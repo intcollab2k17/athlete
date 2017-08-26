@@ -198,11 +198,12 @@
 ?>          
           <div class="box box-success">
                 <div class="box-header">
-                  <h3 class="box-title">Athlete Profile</h3>
+                  <h3 class="box-title">Athlete Profile <a href="#upload<?php echo $row['member_id'];?>" data-target="#upload<?php echo $row['member_id'];?>" data-toggle="modal" style="color:#fff;" class="small-box-footer"> <i class="glyphicon glyphicon-upload text-blue"> </i></a></h3>
                 </div>
                 <div class="box-body">
                   <!-- Date range -->
                   <form method="post" action="athlete_add.php" enctype="multipart/form-data">
+                  <img class="attachment-img" src="../dist/uploads/<?php echo $row['member_pic'];?>" alt="Attachment Image" style="width: 150px;height: 150px">
                   <div class="form-group">
                     <label for="date">Athlete Name</label>
                     <div class="input-group col-md-12">
@@ -255,3 +256,46 @@
 <?php include('script.php');?>
 </body>
 </html>
+<div id="upload<?php echo $row['member_id'];?>" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content" style="height:auto">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Upload Athlete Picture</h4>
+              </div>
+              <div class="modal-body">
+        <form class="form-horizontal" method="post" action="upload.php" enctype='multipart/form-data' style="margin-left: 10px;">
+            <input type="hidden" name="id" value="<?php echo $row['member_id'];?>">
+            <div class="form-group">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                              <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                <img src="../dist/uploads/<?php echo $row['member_pic'];?>" alt="">
+                              </div>
+                              <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;">
+                              </div>
+                              <div>
+                                <span class="btn default btn-file">
+                                <span class="fileinput-new">
+                                Select image </span>
+                                <span class="fileinput-exists">
+                                Change </span>
+                                <input type="file" name="image">
+                                </span>
+                                <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput">
+                                Remove </a>
+                              </div>
+                            </div>
+                          </div>
+            
+              </div><br><br>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-info">Save changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+        </form>
+        </div>
+      
+        </div><!--end of modal-dialog-->
+ </div>
+ <!--end of modal-->                 

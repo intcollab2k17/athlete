@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 13, 2017 at 01:52 AM
+-- Generation Time: Aug 26, 2017 at 05:52 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -63,17 +63,6 @@ CREATE TABLE `athlete` (
   `scholar_status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `athlete`
---
-
-INSERT INTO `athlete` (`athlete_id`, `sports_id`, `settings_id`, `member_id`, `coach_id`, `event_id`, `uniform`, `remarks`, `scholar_status`) VALUES
-(6, '3', 1, 7, 3, 1, 0, '', 0),
-(7, '4', 5, 7, 0, 1, 0, '', 0),
-(8, '8', 5, 9, 0, 1, 1, '', 0),
-(10, '8', 5, 9, 0, 1, 0, '', 0),
-(11, '3', 5, 9, 5, 1, 0, '', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -85,13 +74,6 @@ CREATE TABLE `award` (
   `athlete_id` int(11) NOT NULL,
   `award` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `award`
---
-
-INSERT INTO `award` (`award_id`, `athlete_id`, `award`) VALUES
-(1, 6, 'MVP');
 
 -- --------------------------------------------------------
 
@@ -164,15 +146,6 @@ CREATE TABLE `coach` (
   `event_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `coach`
---
-
-INSERT INTO `coach` (`coach_id`, `member_id`, `sports_id`, `settings_id`, `event_id`) VALUES
-(3, 8, 3, 1, 1),
-(4, 10, 3, 5, 1),
-(5, 12, 3, 5, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -231,15 +204,6 @@ CREATE TABLE `equipment` (
   `qty` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `equipment`
---
-
-INSERT INTO `equipment` (`equipment_id`, `equipment_name`, `equipment_desc`, `qty`) VALUES
-(1, 'Volleyball', 'Volleyball ', 6),
-(2, 'Volleyball Net', 'Volleyball Net Black', 3),
-(3, 'Rocket', 'Badminton Rocket', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -258,9 +222,8 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`event_id`, `event_name`, `event_status`, `event_date`) VALUES
-(1, 'Intramurals 2017', '', '2017-08-18'),
-(2, 'Quadra 2017', 'active', '2017-10-20'),
-(3, 'SCUAA', '', '2017-10-09');
+(1, 'Intramurals 2017', 'active', '2017-08-22'),
+(2, 'Quadra 2017', '', '2017-10-14');
 
 -- --------------------------------------------------------
 
@@ -270,6 +233,7 @@ INSERT INTO `event` (`event_id`, `event_name`, `event_status`, `event_date`) VAL
 
 CREATE TABLE `member` (
   `member_id` int(11) NOT NULL,
+  `member_pic` varchar(100) NOT NULL,
   `member_last` varchar(30) NOT NULL,
   `member_first` varchar(30) NOT NULL,
   `gender` varchar(10) NOT NULL,
@@ -286,13 +250,14 @@ CREATE TABLE `member` (
 -- Dumping data for table `member`
 --
 
-INSERT INTO `member` (`member_id`, `member_last`, `member_first`, `gender`, `ys`, `member_type`, `course`, `address`, `bday`, `campus_id`, `member_status`) VALUES
-(7, 'Aboy', 'Kenneth', 'Male', '4B', 'Student', 'BSIS', 'Silay City', '0000-00-00', 1, 1),
-(8, 'Cango', 'Rogelio', 'Male', 'NA', 'Faculty', 'NA', 'Talisay City', '0000-00-00', 1, 1),
-(9, 'Britanica', 'Louie', 'Male', '1B', 'Student', 'BEED', 'Silay City', '0000-00-00', 2, 1),
-(10, 'Rivera', 'Naldz', 'Male', 'NA', 'Faculty', 'NA', 'Banago', '0000-00-00', 3, 1),
-(11, ' Roque', 'Aljaine', 'Female', '1A', 'Student', 'BSCE', 'Busay', '0000-00-00', 3, 1),
-(12, 'Uy', 'Manuel', 'Male', 'NA', 'Faculty', 'NA', 'Bacolod', '0000-00-00', 2, 1);
+INSERT INTO `member` (`member_id`, `member_pic`, `member_last`, `member_first`, `gender`, `ys`, `member_type`, `course`, `address`, `bday`, `campus_id`, `member_status`) VALUES
+(19, '', 'Cueva', 'Kaye', 'Female', 'BSIS 4-B', 'Student', 'BSIS', 'Sagay City', '0000-00-00', 1, 1),
+(20, 'Koala.jpg', 'Aboy', 'Kenneth', 'Male', '2-A', 'Student', 'BSIS', 'Silay City', '0000-00-00', 1, 1),
+(21, '', 'Cango', 'Rogelio', 'Male', 'NA', 'Faculty', 'NA', 'Talisay City', '0000-00-00', 1, 1),
+(22, '', 'Rivera', 'Naldrix', 'Male', 'Na', 'Faculty', 'NA', 'Bacolod City', '0000-00-00', 1, 1),
+(23, '', 'Callado', 'Rhen ', 'Male', '2-A', 'Student', 'BEED', 'EB agalona', '0000-00-00', 1, 1),
+(24, '', 'Dearaye', 'Sunshine', 'Female', 'BSED 2-B', 'Student', 'BEED', 'Talisay', '0000-00-00', 1, 0),
+(25, 'default.jpg', 'dsd', 'dsds', 'Male', 'dsds', 'Student', 'BEED', 'dsd', '0000-00-00', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -370,8 +335,8 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`settings_id`, `sem`, `sy`, `status`) VALUES
-(4, '1st', '2017-2018', ''),
-(5, '2nd', '2017-2018', 'active');
+(4, '1st', '2017-2018', 'active'),
+(5, '2nd', '2017-2018', '');
 
 -- --------------------------------------------------------
 
@@ -390,9 +355,8 @@ CREATE TABLE `sports` (
 --
 
 INSERT INTO `sports` (`sports_id`, `sports_name`, `sports_status`) VALUES
-(3, 'Swimming', 'active'),
-(4, 'Volleyball', 'active'),
-(8, 'Basketball', 'active');
+(1, 'Volleyball Men', 'active'),
+(2, 'Volleyball Girls', 'active');
 
 -- --------------------------------------------------------
 
@@ -437,7 +401,8 @@ INSERT INTO `user` (`user_id`, `username`, `password`, `name`, `status`, `design
 (3, 'admin', 'admin', 'Lee', '', 'Sports Director', 1),
 (8, 'jo', 'admin', 'Jo Sallilas', '', 'Sports Coordinator', 1),
 (9, 'manuel', 'admin', 'Manuel Uy', '', 'Sports Coordinator', 2),
-(10, 'ailyn', 'admin', 'Ailyn Tanaleon', '', 'Sports Coordinator', 4);
+(10, 'ailyn', 'admin', 'Ailyn Tanaleon', '', 'Sports Coordinator', 4),
+(11, 'secretary', '123', 'Secretary', '', 'Sports Coordinator', 1);
 
 --
 -- Indexes for dumped tables
@@ -582,12 +547,12 @@ ALTER TABLE `album_content`
 -- AUTO_INCREMENT for table `athlete`
 --
 ALTER TABLE `athlete`
-  MODIFY `athlete_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `athlete_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `award`
 --
 ALTER TABLE `award`
-  MODIFY `award_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `award_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `borrow`
 --
@@ -607,7 +572,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `coach`
 --
 ALTER TABLE `coach`
-  MODIFY `coach_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `coach_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `course`
 --
@@ -622,17 +587,17 @@ ALTER TABLE `document`
 -- AUTO_INCREMENT for table `equipment`
 --
 ALTER TABLE `equipment`
-  MODIFY `equipment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `equipment_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `sched`
 --
@@ -657,7 +622,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `sports`
 --
 ALTER TABLE `sports`
-  MODIFY `sports_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `sports_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `sy`
 --
@@ -667,7 +632,7 @@ ALTER TABLE `sy`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
