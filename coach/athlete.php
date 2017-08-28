@@ -24,11 +24,11 @@
         $sports=$_REQUEST['sports'];
         $campus=$_SESSION['campus'];
         
-        $query=mysqli_query($con,"select *,member_id as member from coach natural join member natural join sports where sports_name='$sports'")or die(mysqli_error($con));
-            $row=mysqli_fetch_array($query);
+        $query4=mysqli_query($con,"select *,member_id as member from coach natural join member natural join sports where sports_name='$sports'")or die(mysqli_error($con));
+            $row4=mysqli_fetch_array($query4);
               $cid=$row['coach_id'];
               
-              echo $row['member_last'].", ".$row['member_first'];
+              echo $row4['member_last'].", ".$row4['member_first'];
     ?>
       </h1>
       <ol class="breadcrumb">
@@ -407,7 +407,7 @@
           </div>
         </div> 
         <input type="hidden" name="sports" value="<?php echo $sports;?>">
-        <input type="hidden" name="sports_id" value="<?php echo $sports_id;?>">
+        <input type="hidden" name="sports_id" value="<?php echo $row4['sports_id'];?>">
         <input type="hidden" name="coach" value="<?php echo $cid;?>">
         <input type="hidden" name="event" value="<?php echo $event_id;?>">
 
