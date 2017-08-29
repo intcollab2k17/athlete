@@ -88,9 +88,9 @@
                         <td>
                           <?php
                             if ($row['uniform']=="0")
-                                  echo "<a href='tshirt.php?status=yes&aid=$aid&sports=$sports' class='btn btn-danger'>No</a>";
+                                  echo "<a href='tshirt.php?status=yes&aid=$aid&sports=$sports&cid=$cid' class='btn btn-danger'>No</a>";
                             else
-                                  echo "<a href='tshirt.php?status=No&aid=$aid&sports=$sports' class='btn btn-info'>Yes</a>";    
+                                  echo "<a href='tshirt.php?status=No&aid=$aid&sports=$sports&cid=$cid' class='btn btn-info'>Yes</a>";    
                           ?>
                         
                         </td>
