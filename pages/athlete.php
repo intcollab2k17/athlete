@@ -34,72 +34,8 @@
       <!-- Main row -->
       <div class="row">
         <!-- Left col -->
-        <section class="col-lg-3 connectedSortable">
-
-          <!-- solid sales graph -->
-          <div class="box box-success">
-                <div class="box-header">
-                  <h3 class="box-title">Athlete</h3>
-                </div>
-                <div class="box-body">
-                  <!-- Date range -->
-                  <form method="post" action="athlete_add.php" enctype="multipart/form-data">
-                  <div class="form-group">
-                    <label for="date">Athlete Name</label>
-                    <div class="input-group col-md-12">
-                      <select class="form-control select2" style="width: 100%;" name="name" required>
-                        <?php
-                          $query2=mysqli_query($con,"select * from member where member_type='Student' order by member_last,member_first")or die(mysqli_error($con));
-                              while($row2=mysqli_fetch_array($query2)){
-                        ?>
-                              <option value="<?php echo $row2['member_id'];?>"><?php echo $row2['member_last'].", ".$row2['member_first'];?></option>
-                        <?php }?>
-                        </select>
-                    </div><!-- /.input group -->
-                  </div><!-- /.form group -->
-                  <div class="form-group">
-                    <label for="date">Sport</label>
-                    <div class="input-group col-md-12">
-                      <select class="form-control select2" style="width: 100%;" name="sport" required>
-                        <?php
-                          $query2=mysqli_query($con,"select * from sports order by sports_name")or die(mysqli_error($con));
-                              while($row2=mysqli_fetch_array($query2)){
-                        ?>
-                              <option value="<?php echo $row2['sports_id'];?>"><?php echo $row2['sports_name'];?></option>
-                        <?php }?>
-                        </select>
-                    </div><!-- /.input group -->
-                  </div><!-- /.form group -->
-                  <div class="form-group">
-                    <label for="date">Event</label>
-                    <div class="input-group col-md-12">
-                      <select class="form-control select2" style="width: 100%;" name="event" required>
-                        <?php
-                          $query2=mysqli_query($con,"select * from event order by event_name")or die(mysqli_error($con));
-                              while($row2=mysqli_fetch_array($query2)){
-                        ?>
-                              <option value="<?php echo $row2['event_id'];?>"><?php echo $row2['event_name'];?></option>
-                        <?php }?>
-                        </select>
-                    </div><!-- /.input group -->
-                  </div><!-- /.form group -->
-                  
-                  <div class="form-group">
-                    <div class="input-group">
-                      <button class="btn btn-info btn-lg" id="daterange-btn" name="">
-                        Save
-                      </button>
-                       <button class="btn btn-lg" id="daterange-btn" type="reset">
-                        Clear
-                      </button>
-                    </div>
-                  </div><!-- /.form group -->
-        </form> 
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-
-        </section>
-        <section class="col-lg-9 connectedSortable">
+       
+        <section class="col-lg-12 connectedSortable">
           <!-- Custom tabs (Charts with tabs)-->
           <div class="box box-success">
     
@@ -291,8 +227,9 @@
                     </tbody>
                     <tfoot>
                       <tr>
-                        <th>Athlete Last Name</th>
-                        <th>Athlete First Name</th>
+                        <th>Photo</th>
+                        <th>Last Name</th>
+                        <th>First Name</th>
                         <th>Sport</th>
                         <th>Award/s</th>
                         <th>Action</th>
